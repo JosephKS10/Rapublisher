@@ -18,6 +18,7 @@ export type Work = {
   title: string
   metaTitle?: string // when title plus " | RaPublisher" runs over 60 characters (A4)
   summary: string
+  metaDescription?: string // under 155 characters; otherwise the first sentence of the summary is used
   client: string
   clientNamePermission: boolean
   clientDescription: string
@@ -46,6 +47,7 @@ export type Work = {
 export const work: Work[] = [
   {
     slug: 'super-pro-services',
+    metaDescription: 'How our engineers built a public website, a staff portal and digital sign-in as one system for Super Pro Services, a cleaning services business.',
     title: 'A public website and a workforce portal in one system',
     metaTitle: 'Super Pro Services workforce portal | RaPublisher',
     summary:
@@ -82,6 +84,7 @@ export const work: Work[] = [
   },
   {
     slug: 'ccsm-mobile-commerce',
+    metaDescription: 'A native iOS and Android ordering app for CCSM in Melbourne, with Shopify running products, stock, cart and checkout behind it.',
     title: 'A mobile ordering app running on Shopify',
     summary: 'A Melbourne business wanted customers ordering from a fast mobile app without giving up Shopify behind the scenes.',
     client: 'CCSM [CONFIRM full name]',
@@ -114,6 +117,7 @@ export const work: Work[] = [
   },
   {
     slug: 'multi-site-operations-platform',
+    metaDescription: 'One platform for stock, orders, sites, inductions and deliveries, built for a multi-site commercial cleaning business by our engineers.',
     title: 'One system for stock, orders, sites, inductions and deliveries',
     metaTitle: 'Multi-site operations platform | RaPublisher',
     summary:
@@ -150,6 +154,7 @@ export const work: Work[] = [
   },
   {
     slug: 'calpinemate-employee-app',
+    metaDescription: 'CalpineMate: an employee portal rebuilt as an iOS and Android app with biometric sign-in, live leave balances and push notifications.',
     title: 'Taking an employee portal from the desk to the phone',
     metaTitle: 'CalpineMate employee app | RaPublisher',
     summary:

@@ -138,24 +138,24 @@ export const beliefs = [
 
 // FAQ bank (C10). Pages pick questions by their number in this list.
 export const faqs = [
-  { q: 'What is a forward deployed engineer?', a: 'An engineer who works inside your operation to learn how the work really flows, then designs, builds, launches and looks after the software that fixes it. You deal with the same people throughout.' },
+  { q: 'What is a forward deployed engineer?', a: 'A forward deployed engineer is a software engineer who works inside your operation to learn how the work really flows, then designs, builds, launches and looks after the software that fixes it. At RaPublisher you deal with the same engineers from the first site walk to the hundredth improvement.' },
   { q: 'Do you really come on site?', a: 'Yes. The site walk, the Blueprint days, rollout and quarterly reviews happen at your premises. Weekly demos can be on site or on screen, whichever suits you.' },
-  { q: 'Who actually writes the code?', a: "Your engineers live in Melbourne. They come on site, design your system, build it and look after it. If a larger build ever needs extra hands, we'll tell you who and where first." },
+  { q: 'Who actually writes the code?', a: "RaPublisher's engineers, Ramin Shirzad and Joseph Saji, live in Melbourne. They come on site, design your system, build it and look after it. If a larger build ever needs extra hands, we'll tell you who and where first." },
   { q: 'How much does custom software cost?', a: 'Most first phases fall between A$30,000 and A$90,000 plus GST. Integrations and pilots can cost less. Every phase gets a fixed price after the Blueprint.' },
   { q: 'Why do you charge for the Blueprint?', a: "It's real work: days on site, process maps, a prototype and a costed plan. You own it either way, and the fee comes off your first phase if you go ahead within 60 days." },
   { q: 'What if the project goes over budget?', a: 'Each phase has a fixed price. If you ask for something new partway through, we price the change and you decide before we do it.' },
-  { q: 'Who owns the software?', a: 'You do: the code, the data and the accounts it runs on, from day one.' },
+  { q: 'Who owns the software?', a: 'You do. With RaPublisher you own the code, the data and the accounts the system runs on, from day one. It runs on mainstream technology with documentation, so any competent developer could pick it up. If you ever want to move on, we hand over properly: code, credentials, documentation and a walkthrough.' },
   { q: "What happens if you're not around?", a: "Your system runs on mainstream technology, in accounts you own, with documentation. Any competent developer could pick it up, and we'd hand over properly." },
-  { q: "Can't we just buy something off the shelf?", a: "Often you can, and we'll tell you at the site walk. We build only what off-the-shelf can't do, and connect the rest." },
+  { q: "Can't we just buy something off the shelf?", a: "Often you can, and we'll tell you at the site walk. If an off-the-shelf product fits most of how you work, we'll say so and can help connect it. Custom software makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day. We build only what off-the-shelf can't do, and connect the rest." },
   { q: 'Which systems do you work with?', a: 'Commonly Xero, MYOB, Shopify, WooCommerce and Zoho, plus most systems that offer an API or a data export. [CONFIRM list]' },
   { q: 'Where is our data stored?', a: "In Australian hosting regions by default, unless you ask otherwise. Where a provider can't host in Australia, we tell you before we use it. [DECISION]" },
   { q: 'How do you protect formulas and sensitive data?', a: 'Access by role, multi-factor sign-in, a log of every view and change, controlled exports, Australian hosting, and confidentiality agreements before we see anything.' },
   { q: 'How do you use AI, and is it safe?', a: "Where it saves time on routine work. People approve anything that affects money, safety or someone's job, every action is logged, and we document each automated decision for your privacy policy." },
-  { q: 'We built something with an AI app builder. Can you help?', a: "Yes. A rescue check tells you in plain English what's risky and what it would take to fix." },
+  { q: 'We built something with an AI app builder. Can you help?', a: 'Yes. A rescue check is a fixed-fee review of an existing system, a stalled project or an AI-built tool. We check who has access, where the data lives, exposed passwords and keys, backups, and who owns the accounts and code. You get a plain-English report, a ranked list of risks, a recommendation to fix or rebuild, and a fixed quote for the work.' },
   { q: 'How long does it take?', a: 'Site walks usually happen within a week or two. A Blueprint takes two to three weeks, and a first phase 6 to 16 weeks. [CONFIRM]' },
   { q: 'What areas do you cover?', a: 'Metro Melbourne for site walks, and regional Victoria by arrangement. Interstate projects case by case. [DECISION]' },
   { q: 'Are we too small for this?', a: "If two or three people retype or reconcile the same information every day, it's usually worth an hour to check. Try the calculator." },
-  { q: 'Are you insured?', a: '[TODO: types of cover]. Certificates are available on request before the first visit.' },
+  { q: 'Are you insured?', a: '[TODO: types of cover, then "Certificates are available on request before the first visit."]' },
   { q: 'Can you take over a system someone else built?', a: 'Yes, after a rescue check, so we both know what we\'re taking on.' },
 ]
 

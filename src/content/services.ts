@@ -17,6 +17,8 @@ export type Service = {
   investment?: string
   relatedWork: string[]
   faqs: { q: string; a: string }[]
+  moreFaqs?: number[] // answers from the shared bank in site.ts (C10), shown after the page's own
+  insight?: string // slug of the article to read next
   cta?: string
 }
 
@@ -45,9 +47,10 @@ export const services: Service[] = [
       'Scheduling for production runs, crews or deliveries.',
       "Dashboards built on live data, not last month's export.",
     ],
-    timeline: 'A site walk, then a Blueprint, then a first phase of 6 to 12 weeks focused on the one workflow causing the most double handling.',
-    investment: 'First phases typically A$30,000 to A$90,000 plus GST, fixed before we start. [DECISION]',
+    timeline: 'We start with a free site walk, then a fixed-fee Blueprint, then a first build phase of 6 to 12 weeks on the one workflow causing the most double handling.',
+    investment: 'A first phase of operations software typically costs A$30,000 to A$90,000 plus GST. The price is fixed before we start. [DECISION]',
     relatedWork: ['multi-site-operations-platform'],
+    insight: 'custom-software-cost-melbourne',
     faqs: [
       { q: 'Should we buy an ERP instead?', a: "Sometimes. If an off-the-shelf system fits most of how you work, we'll say so and can help connect it. Custom makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day." },
       { q: 'Will it work with Xero or MYOB?', a: 'Yes. Your accounting system stays the source of truth for the books, and we connect to it.' },
@@ -58,11 +61,11 @@ export const services: Service[] = [
     slug: 'integrations',
     title: 'Integrations',
     summary: "Shopify, Xero, MYOB, Zoho and your other tools sharing information, so it's entered once. [CONFIRM platform list]",
-    metaTitle: 'Shopify, Xero and inventory integrations | RaPublisher',
+    metaTitle: 'Custom Shopify and Xero integrations | RaPublisher',
     metaDescription:
       'Connect Shopify, Xero, MYOB, Zoho and your other tools so information is entered once and matches everywhere. Melbourne engineers.',
     h1: 'Connect the tools you already pay for',
-    lead: "Shopify, Xero, MYOB, Zoho, your B2B ordering and your spreadsheets, sharing information so it's entered once and matches everywhere.",
+    lead: "Shopify, Xero, MYOB, Zoho, your B2B ordering and your spreadsheets, sharing information so it's entered once and matches everywhere. [CONFIRM platform list]",
     symptoms: [
       'Web orders get retyped into the accounting system.',
       'Stock levels in your store and your inventory app drift apart.',
@@ -79,11 +82,13 @@ export const services: Service[] = [
       'Alerts when a sync fails, before a customer notices.',
       "[CONFIRM which platforms we've integrated in production, and list only those on the live page.]",
     ],
-    timeline: 'Most integrations take 2 to 8 weeks.',
-    investment: 'Typically A$8,000 to A$40,000 plus GST [DECISION], plus a Care plan to keep it healthy as platforms change.',
+    timeline: 'Most integrations between two or three systems take 2 to 8 weeks.',
+    investment: 'An integration typically costs A$8,000 to A$40,000 plus GST [DECISION], plus a Care plan to keep it healthy as platforms change.',
     relatedWork: ['ccsm-mobile-commerce', 'b2b-ordering-cleaning-chemicals'],
+    moreFaqs: [10],
+    insight: 'real-cost-of-double-handling',
     faqs: [
-      { q: 'Why not just use Zapier or Make?', a: "For simple, low-volume tasks they're great, and we'll use them where they fit. Once money, stock or customer accounts depend on a connection, you need error handling, logs and someone accountable when it breaks." },
+      { q: 'Why not just use Zapier or Make?', a: "Zapier and Make are great for simple, low-volume tasks, and we'll use them where they fit. Once money, stock or customer accounts depend on a connection, you need error handling, logs and someone accountable when it breaks." },
       { q: 'What happens when Shopify or Xero change something?', a: 'Platforms update their connections regularly. Monitoring and updates are part of the Care plan.' },
     ],
   },
@@ -123,9 +128,10 @@ export const services: Service[] = [
         ],
       },
     ],
-    timeline: 'A pilot of 3 to 6 weeks on one workflow, measured against how it works today.',
-    investment: 'Pilots typically A$10,000 to A$30,000 plus GST [DECISION], plus usage costs paid directly to the AI provider.',
+    timeline: 'An AI pilot runs for 3 to 6 weeks on one workflow and is measured against how that workflow runs today.',
+    investment: 'An AI pilot typically costs A$10,000 to A$30,000 plus GST [DECISION], plus usage costs paid directly to the AI provider.',
     relatedWork: [],
+    moreFaqs: [13, 11],
     faqs: [
       { q: 'Do we need to be "AI ready" first?', a: "No. If your team handles documents, emails or repeat decisions, there's usually a sensible place to start. We'll tell you at the site walk." },
       { q: 'Will it replace our staff?', a: "It's designed to take retyping off people's plates, not to replace the people. What you do with the time saved is your call." },
@@ -136,7 +142,7 @@ export const services: Service[] = [
     slug: 'field-and-floor-apps',
     title: 'Field and floor apps',
     summary: 'Simple apps for sign-in, inductions, job sheets, stock counts and deliveries.',
-    metaTitle: 'Sign-in, induction and field apps | RaPublisher',
+    metaTitle: 'Custom sign-in, induction and field apps | RaPublisher',
     metaDescription:
       "Simple apps for sign-in, inductions, job sheets, stock counts and deliveries, built for people who aren't at a desk. Melbourne engineers.",
     h1: "Apps for the people who aren't at a desk",
@@ -162,9 +168,10 @@ export const services: Service[] = [
         body: 'Big buttons, few steps, works offline where reception drops out, and runs on the phones people already carry. Location features come with clear notice and consent, because tracking where people are raises legal questions in Victoria. [CONFIRM with a lawyer before promoting location features]',
       },
     ],
-    timeline: '4 to 10 weeks for a first version.',
-    investment: 'Typically A$15,000 to A$60,000 plus GST. [DECISION]',
+    timeline: 'A first version of a field or floor app takes 4 to 10 weeks.',
+    investment: 'A first version typically costs A$15,000 to A$60,000 plus GST. [DECISION]',
     relatedWork: ['super-pro-services', 'multi-site-operations-platform', 'calpinemate-employee-app'],
+    moreFaqs: [9],
     faqs: [
       { q: 'Native app or web app?', a: "A web app that installs to the home screen is often enough, and it avoids app store delays. If you need biometric sign-in, background notifications or heavy offline use, we'll recommend native." },
       { q: 'Will the whole team actually use it?', a: "If it's built around what they already do and they're trained on site, yes. We test with the least enthusiastic users first." },
@@ -202,6 +209,7 @@ export const services: Service[] = [
       },
     ],
     relatedWork: ['storefront-rebuild'],
+    moreFaqs: [14, 19],
     faqs: [
       { q: 'Will you judge us for building it with AI?', a: 'No. Building it was a smart way to learn what you need. Our job is to make it safe to rely on.' },
       { q: 'Can you work with our original developer?', a: 'Yes, and a proper handover helps everyone.' },
@@ -243,6 +251,7 @@ export const services: Service[] = [
       { heading: "Systems we didn't build", body: 'We can look after those too, after a rescue check.' },
     ],
     relatedWork: [],
+    moreFaqs: [19, 8, 7],
     faqs: [],
     cta: 'Talk to us',
   },

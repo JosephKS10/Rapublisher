@@ -13,6 +13,8 @@ export type Industry = {
   systems: string[]
   special: Section
   proof: string[]
+  services: string[] // the service pages this industry usually starts with
+  faqs?: number[] // answers from the shared bank in site.ts (C10)
 }
 
 export const industries: Industry[] = [
@@ -24,7 +26,7 @@ export const industries: Industry[] = [
     metaDescription:
       'Batch records, formula protection, stock, B2B orders and Xero working as one system, designed on your floor by Melbourne engineers.',
     h1: 'Software for Victorian makers',
-    lead: "For manufacturers and formulators who've outgrown spreadsheets: chemicals and cleaning products, cosmetics, food and drink, and made-to-order products. [CONFIRM which sub-sectors we can show proof for] We're based in Melbourne's south-east, Australia's biggest manufacturing region, so for most of the region a site walk is a short drive away. [CONFIRM suburb]",
+    lead: "RaPublisher builds software for Victorian manufacturers and formulators who've outgrown spreadsheets: chemicals and cleaning products, cosmetics, food and drink, and made-to-order products. [CONFIRM which sub-sectors we can show proof for] We're based in Melbourne's south-east, Australia's biggest manufacturing region, so for most of the region a site walk is a short drive away. [CONFIRM suburb]",
     pains: [
       'Batch and production records on paper or in spreadsheets.',
       'Formulas in a shared folder that too many people can open.',
@@ -43,9 +45,11 @@ export const industries: Industry[] = [
     ],
     special: {
       heading: 'Your formulas stay yours',
-      body: "Your formulas are the business. We design systems so the people who need a formula can see it, nobody else can, and every view and change is logged. Production sees what this batch needs without seeing the master formula. Exports are controlled, sign-in uses multi-factor authentication, data is hosted in Australia by default, and we sign a confidentiality agreement before we see anything.\n\nWe don't give compliance advice. We make your records easier to keep, find and prove.",
+      body: "Your formulas are the business. We design systems so the people who need a formula can see it, nobody else can, and every view and change is logged. Production sees what this batch needs without seeing the master formula. Exports are controlled, sign-in uses multi-factor authentication, data is hosted in Australia by default [DECISION], and we sign a confidentiality agreement before we see anything.\n\nWe don't give compliance advice. We make your records easier to keep, find and prove.",
     },
     proof: ['ccsm-mobile-commerce', 'b2b-ordering-cleaning-chemicals'],
+    services: ['operations-software', 'integrations'],
+    faqs: [12, 11],
   },
   {
     slug: 'wholesale-distribution',
@@ -55,7 +59,7 @@ export const industries: Industry[] = [
     metaDescription:
       'Trade ordering portals, customer price lists, stock across warehouses and accounting integration that agree with each other. Melbourne.',
     h1: 'B2B ordering, price lists and stock that agree with each other',
-    lead: 'For wholesalers and distributors whose trade customers still order by email and phone, and whose price lists live in spreadsheets.',
+    lead: 'RaPublisher builds B2B ordering, price list and stock systems for wholesalers and distributors whose trade customers still order by email and phone, and whose price lists live in spreadsheets.',
     pains: [
       'Trade orders by email, phone and text, all retyped.',
       "A different price list for every big customer, kept in someone's head.",
@@ -77,6 +81,7 @@ export const industries: Industry[] = [
       body: "Your best trade customers shouldn't have to learn a new way to buy. We start with how they order today, by phone, email or a rep's visit, and make the online route quicker than all three.",
     },
     proof: ['b2b-ordering-cleaning-chemicals', 'ccsm-mobile-commerce'],
+    services: ['integrations', 'operations-software'],
   },
   {
     slug: 'multi-site-services',
@@ -86,7 +91,7 @@ export const industries: Industry[] = [
     metaDescription:
       'Sign-in, inductions, rosters, site supplies and client reporting in one system for cleaning, facilities and field teams. Melbourne.',
     h1: 'Software for teams spread across many sites',
-    lead: 'For commercial cleaning, facilities and field service businesses where the work happens at client sites, not in an office.',
+    lead: 'RaPublisher builds software for commercial cleaning, facilities and field service businesses where the work happens at client sites, not in an office.',
     pains: [
       "Nobody's sure who's on which site right now.",
       'Sign-in by text message, and timesheets disputed every pay run.',
@@ -107,6 +112,7 @@ export const industries: Industry[] = [
       body: 'Sign-in and location features work best when staff trust them. We build them with clear notice and consent, show people their own records, and collect only what you need. [CONFIRM with a lawyer]',
     },
     proof: ['super-pro-services', 'multi-site-operations-platform'],
+    services: ['field-and-floor-apps', 'operations-software'],
   },
 ]
 

@@ -65,7 +65,7 @@ export const insights: Insight[] = [
     author: 'Joseph Saji [CONFIRM]',
     topic: 'Pricing',
     body: [
-      { p: 'Custom software in Melbourne commonly runs from about A$25,000 to A$250,000 or more, depending on what is built. [CONFIRM: re-check against the sources] The useful question is not the total, it is what a sensible first phase costs and what moves that number.' },
+      { p: 'Published cost guides put custom software in Melbourne at about A$25,000 to A$250,000 or more, depending on what is built. [CONFIRM: re-check against the sources] The useful question is not the total, it is what a sensible first phase costs and what moves that number.' },
       { h: 'What the published guides say' },
       { ul: [
         'Agency rates of about A$120 to A$250 an hour, with most quality mid-market agencies at A$150 to A$200. [CONFIRM]',
@@ -82,6 +82,14 @@ export const insights: Insight[] = [
         'Whether it has to work offline or on phones.',
         'The reports you need.',
         'How many sites are rolled out and trained.',
+      ] },
+      { h: 'Typical ranges by type of work' },
+      { p: 'These are our own typical ranges, plus GST, with the usual time each takes. [DECISION]' },
+      { ul: [
+        'An integration between two or three systems: A$8,000 to A$40,000, 2 to 8 weeks.',
+        'An AI pilot on one workflow: A$10,000 to A$30,000, 3 to 6 weeks.',
+        'A field or floor app, first version: A$15,000 to A$60,000, 4 to 10 weeks.',
+        'Operations software, first phase: A$30,000 to A$90,000, 6 to 12 weeks.',
       ] },
       { h: 'Fixed price or hourly' },
       { p: 'Hourly billing puts the risk of a blowout on you. A fixed price puts it on the builder, which is only fair if the builder has seen the work first. That is why we fix the price for each phase after a Blueprint, not from a one-line brief. If you ask for something new partway through, we price the change and you decide before we do it.' },
@@ -115,10 +123,10 @@ export const insights: Insight[] = [
     body: [
       { p: 'Double handling is the same information entered more than once: a phone order written on a notepad, typed into a spreadsheet, typed into Xero, then typed onto a pick slip. It rarely appears in the accounts, which is why it is usually bigger than people expect.' },
       { h: 'The formula' },
-      { p: 'Yearly cost of double handling = people x (minutes a day / 60) x hourly cost x working days a year.' },
+      { p: 'Yearly cost of double handling = people × (minutes a day ÷ 60) × hourly cost × working days a year.' },
       { p: 'Use the hourly cost including on-costs, not the wage alone. Our calculator starts at A$45 an hour and 230 working days a year. [DECISION] Change both to match your business.' },
       { h: 'A worked example' },
-      { p: 'Three people each spend 30 minutes a day re-entering or reconciling orders. That is 3 x 0.5 hours x A$45 x 230 days, or A$15,525 a year. Four people at 45 minutes a day comes to A$31,050. Neither figure includes the cost of mistakes.' },
+      { p: 'Three people each spend 30 minutes a day re-entering or reconciling orders. That is 3 × 0.5 hours × A$45 × 230 days, or A$15,525 a year. Four people at 45 minutes a day comes to A$31,050. Neither figure includes the cost of mistakes.' },
       { h: 'What the formula leaves out' },
       { ul: [
         'Pricing and picking errors, and the time spent fixing them.',
