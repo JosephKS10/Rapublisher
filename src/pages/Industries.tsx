@@ -15,8 +15,10 @@ export function IndustriesIndex() {
       <PageHead
         title="Businesses we know"
         lead="Victorian businesses that make, move and service physical things, and run on spreadsheets, disconnected apps and a few people's memory."
+        crumbs={[{ to: '/industries', label: 'Industries' }]}
       />
       <div className="wrap pad-b">
+        <h2 className="sr-only">Industries</h2>
         <IndustryPanels />
       </div>
       <CtaBand />

@@ -51,6 +51,7 @@ export default function HowWeWork() {
         description="We start on your floor, not with a brief. A free site walk, a fixed-fee Blueprint, fixed-price builds and the same engineers after go-live."
       />
       <PageHead
+        crumbs={[{ to: '/how-we-work', label: 'How we work' }]}
         title="We learn the work first. Then we build the software."
         lead="A forward deployed engineer works inside your operation: on the floor, in the warehouse, out at your sites. That's how we find out how the work really flows, and it's why what we build gets used."
       />

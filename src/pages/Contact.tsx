@@ -10,6 +10,7 @@ export default function Contact() {
         description="Book a free site walk with a Melbourne forward deployed engineer, or tell us what would make your working day easier."
       />
       <PageHead
+        crumbs={[{ to: '/contact', label: 'Contact' }]}
         title="Book a site walk"
         lead="Tell us a little about your business and what's slowing it down. An engineer will reply within one business day [CONFIRM] to find a time."
       />

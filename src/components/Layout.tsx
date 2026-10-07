@@ -1,11 +1,12 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link, NavLink, Outlet, ScrollRestoration } from 'react-router'
 import { footerLinks, nav, site } from '../content/site'
 import { Brand } from './Logo'
-import { BookButton, EmailLink, hasPhone, JsonLd, PhoneLink, Rich } from './ui'
+import { BookButton, EmailLink, hasPhone, JsonLd, ORG_ID, personId, PhoneLink, Rich, SITE_ID } from './ui'
 
 function Header() {
   const menu = useRef<HTMLDialogElement>(null)
+  const [open, setOpen] = useState(false)
   const close = () => menu.current?.close()
   return (
     <header className="site-header">
@@ -16,20 +17,20 @@ function Header() {
             {nav.map((n) => <NavLink key={n.to} to={n.to}>{n.label}</NavLink>)}
           </nav>
           <BookButton className="btn btn-primary btn-sm header-cta" />
-          <button className="btn btn-ghost btn-sm menu-btn" aria-haspopup="dialog" onClick={() => menu.current?.showModal()}>
+          <button className="btn btn-ghost btn-sm menu-btn" aria-haspopup="dialog" aria-expanded={open} onClick={() => { menu.current?.showModal(); setOpen(true) }}>
             Menu
           </button>
         </div>
       </div>
       {/* Native dialog: focus trap, Escape to close and inert background for free */}
-      <dialog ref={menu} className="menu" aria-label="Menu" onClick={(e) => (e.target as HTMLElement).closest('a') && close()}>
+      <dialog ref={menu} className="menu" aria-label="Menu" onClose={() => setOpen(false)} onClick={(e) => (e.target as HTMLElement).closest('a') && close()}>
         <div className="menu-layers" aria-hidden="true"><i /><i /></div>
         <div className="wrap">
           <div className="menu-top">
             <Brand />
             <button className="btn btn-ghost btn-sm" onClick={close}>Close</button>
           </div>
-          <nav aria-label="Main">
+          <nav aria-label="Menu">
             <NavLink to="/" end>Home</NavLink>
             {nav.map((n) => <NavLink key={n.to} to={n.to}>{n.label}</NavLink>)}
             <NavLink to="/contact">Contact</NavLink>
@@ -74,19 +75,26 @@ function Footer() {
   )
 }
 
-// Organization and ProfessionalService structured data (A3).
+// Site-wide structured data (A3): the organisation and the website, as one graph. Pages link to these by @id.
+// Only confirmed facts: no phone, street address, hours or profiles until the owners supply them.
 const org = {
   '@context': 'https://schema.org',
-  '@type': ['Organization', 'ProfessionalService'],
-  name: 'RaPublisher',
-  legalName: 'RA PUBLISHER PTY LTD',
-  url: site.url,
-  email: site.email,
-  slogan: site.line,
-  description: site.defaultDescription,
-  areaServed: [{ '@type': 'City', name: 'Melbourne' }, { '@type': 'State', name: 'Victoria' }, { '@type': 'Country', name: 'Australia' }],
-  address: { '@type': 'PostalAddress', addressRegion: 'VIC', postalCode: '3166', addressCountry: 'AU' },
-  founder: [{ '@type': 'Person', name: 'Ramin Shirzad' }, { '@type': 'Person', name: 'Joseph Saji' }],
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': ORG_ID,
+      name: 'RaPublisher',
+      legalName: 'RA PUBLISHER PTY LTD',
+      url: site.url,
+      email: site.email,
+      slogan: site.line,
+      description: site.defaultDescription,
+      areaServed: [{ '@type': 'City', name: 'Melbourne' }, { '@type': 'State', name: 'Victoria' }],
+      address: { '@type': 'PostalAddress', addressRegion: 'VIC', postalCode: '3166', addressCountry: 'AU' },
+      founder: ['Ramin Shirzad', 'Joseph Saji'].map((name) => ({ '@type': 'Person', '@id': personId(name), name })),
+    },
+    { '@type': 'WebSite', '@id': SITE_ID, url: site.url, name: 'RaPublisher', inLanguage: 'en-AU', publisher: { '@id': ORG_ID } },
+  ],
 }
 
 export function Layout() {

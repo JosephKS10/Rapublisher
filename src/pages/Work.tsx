@@ -26,8 +26,10 @@ export function WorkIndex() {
       <PageHead
         title="Work our engineers have led"
         lead="Systems for businesses that run on crews, stock and sites. Each one started with time spent understanding the work."
+        crumbs={[{ to: '/work', label: 'Work' }]}
       />
-      <section className="wrap pad-b" aria-label="Case studies">
+      <section className="wrap pad-b" aria-labelledby="case-studies">
+        <h2 id="case-studies" className="sr-only">Case studies</h2>
         <div className="filters" role="group" aria-label="Filter by industry">
           {FILTERS.map((f) => (
             <button key={f.label} aria-pressed={f === filter} onClick={() => setFilter(f)}>{f.label}</button>

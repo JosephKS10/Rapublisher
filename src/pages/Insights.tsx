@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router'
 import { CtaBand } from '../components/blocks'
-import { filled, JsonLd, PageHead, Rich, Seo, Ticks } from '../components/ui'
+import { filled, JsonLd, ORG_ID, PageHead, personId, Rich, Seo, SITE_ID, Ticks } from '../components/ui'
 import { getInsight, publishedInsights, type Insight } from '../content/insights'
 import { site, team } from '../content/site'
 import { cleanText } from '../content/markers'
@@ -23,7 +23,7 @@ export default function Insights() {
         title="Insights and field notes | RaPublisher"
         description="Articles and field notes from Melbourne forward deployed engineers on operations software, integrations and practical AI."
       />
-      <PageHead title="Insights" lead="Articles and field notes from Ramin and Joseph, from the floor and from the build." />
+      <PageHead title="Insights" lead="Articles and field notes from Ramin and Joseph, from the floor and from the build." crumbs={[{ to: '/insights', label: 'Insights' }]} />
       <div className="wrap pad-b">
         {publishedInsights.length ? (
           <ul className="posts">
@@ -91,8 +91,12 @@ export function Article() {
           headline: i.title,
           description: i.description,
           datePublished: i.date,
-          author: { '@type': 'Person', name: cleanText(i.author) },
-          publisher: { '@type': 'Organization', name: 'RaPublisher', url: site.url },
+          dateModified: i.date,
+          inLanguage: 'en-AU',
+          image: `${site.url}/og/insights-${i.slug}.jpg`,
+          author: { '@type': 'Person', '@id': personId(cleanText(i.author)), name: cleanText(i.author), url: `${site.url}/about` },
+          publisher: { '@id': ORG_ID },
+          isPartOf: { '@id': SITE_ID },
           mainEntityOfPage: `${site.url}/insights/${i.slug}`,
         }}
       />

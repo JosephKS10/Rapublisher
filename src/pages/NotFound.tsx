@@ -4,7 +4,7 @@ import { PageHead, Seo } from '../components/ui'
 export default function NotFound() {
   return (
     <>
-      <Seo title="Page not found | RaPublisher" description="This page isn't here. Head back to the home page, or tell us what you were looking for." />
+      <Seo og="home" title="Page not found | RaPublisher" description="This page isn't here. Head back to the home page, or tell us what you were looking for." />
       <meta name="robots" content="noindex" />
       <PageHead
         title="This page isn't here."

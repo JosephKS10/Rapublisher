@@ -36,8 +36,16 @@ export const Paras = ({ text }: { text: string }) => (
 export const slug = (s: string) => s.toLowerCase().replace(/\[.*?\]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 // React 19 hoists these into <head>.
-export function Seo({ title, description }: { title: string; description: string }) {
-  const url = site.url + useLocation().pathname.replace(/\/$/, '')
+// Structured data ids. Every page links back to these two nodes, which Layout.tsx defines.
+export const ORG_ID = `${site.url}/#organization`
+export const SITE_ID = `${site.url}/#website`
+export const personId = (name: string) => `${site.url}/about#${slug(name)}`
+
+// `og` names the social preview image in public/og (scripts/og.js makes one per page); pages without their own pass one.
+export function Seo({ title, description, og }: { title: string; description: string; og?: string }) {
+  const path = useLocation().pathname.replace(/\/$/, '')
+  const url = site.url + path
+  const image = `${site.url}/og/${og ?? (path.slice(1).replaceAll('/', '-') || 'home')}.jpg`
   return (
     <>
       <title>{title}</title>
@@ -46,6 +54,25 @@ export function Seo({ title, description }: { title: string; description: string
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={title} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': `${url}#webpage`,
+          url,
+          name: title,
+          description,
+          inLanguage: 'en-AU',
+          isPartOf: { '@id': SITE_ID },
+          about: { '@id': ORG_ID },
+          primaryImageOfPage: image,
+        }}
+      />
     </>
   )
 }

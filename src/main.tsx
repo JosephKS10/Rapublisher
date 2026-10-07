@@ -33,7 +33,7 @@ if (root.hasChildNodes() && (built === location.pathname.replace(/(.)\/$/, '$1')
 else {
   // Drop head tags prerendered for another page; React adds this page's own.
   document.head
-    .querySelectorAll('title, meta[name="description"], link[rel="canonical"], meta[property="og:title"], meta[property="og:description"], meta[property="og:url"]')
+    .querySelectorAll('title, meta[name="description"], link[rel="canonical"], meta[property="og:title"], meta[property="og:description"], meta[property="og:url"], meta[property^="og:image"], meta[name="twitter:card"]')
     .forEach((el) => el.remove())
   createRoot(root).render(app)
 }

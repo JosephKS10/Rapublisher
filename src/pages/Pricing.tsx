@@ -13,6 +13,7 @@ export default function Pricing() {
         description="A free site walk, a fixed-fee Blueprint, a fixed price for each build phase and monthly support plans. Typical ranges, plus GST."
       />
       <PageHead
+        crumbs={[{ to: '/pricing', label: 'Pricing' }]}
         title="What it costs"
         lead="Custom software isn't cheap, and it shouldn't be a mystery. Here's how we price, what's typical, and what moves the number."
       />

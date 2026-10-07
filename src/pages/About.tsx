@@ -1,5 +1,5 @@
 import { CtaBand, Faq, TeamCards } from '../components/blocks'
-import { JsonLd, PageHead, Rich, Section, Seo } from '../components/ui'
+import { JsonLd, ORG_ID, PageHead, personId, Rich, Section, Seo } from '../components/ui'
 import { beliefs, pickFaqs, site, team } from '../content/site'
 
 export default function About() {
@@ -10,11 +10,12 @@ export default function About() {
         description="Melbourne engineers who learn how your business runs before building anything, then stay to look after it. Meet Ramin and Joseph."
       />
       {team.map((m) => (
-        <JsonLd key={m.name} data={{ '@context': 'https://schema.org', '@type': 'Person', name: m.name, jobTitle: m.role, worksFor: { '@type': 'Organization', name: 'RaPublisher', url: site.url }, homeLocation: 'Melbourne, Victoria, Australia' }} />
+        <JsonLd key={m.name} data={{ '@context': 'https://schema.org', '@type': 'Person', '@id': personId(m.name), name: m.name, jobTitle: m.role, url: `${site.url}/about`, worksFor: { '@id': ORG_ID }, homeLocation: { '@type': 'Place', name: 'Melbourne, Victoria, Australia' } }} />
       ))}
       <PageHead
         title="Engineers who'd rather see the floor than read the brief"
         lead="RaPublisher is a Melbourne software engineering business. We work inside our clients' operations, build the systems they need, and look after them for the long run."
+        crumbs={[{ to: '/about', label: 'About' }]}
       />
 
       <Section title="Why we work this way">
