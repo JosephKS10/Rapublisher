@@ -209,8 +209,13 @@
   @keyframes face { to { transform: rotateY(-13deg) rotateX(3deg) rotateZ(0.5deg); } }
 
   /* Statement: words light up as you scroll (React Bits ScrollReveal) */
-  .statement .scroll-reveal { margin: 0; }
-  .statement .scroll-reveal-text { font-family: var(--display); font-stretch: var(--wd); font-size: clamp(1.6rem, 0.9rem + 2.5vw, 3.1rem); line-height: 1.18; letter-spacing: -0.03em; font-weight: 600; color: var(--fg); max-width: 30ch; }
+  .statement-text { font-family: var(--display); font-stretch: var(--wd); font-size: clamp(1.6rem, 0.9rem + 2.5vw, 3.1rem); line-height: 1.18; letter-spacing: -0.03em; font-weight: 600; color: var(--fg); max-width: 30ch; }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .statement-text span { opacity: 0.16; animation: lit linear both; animation-timeline: view(); animation-range: cover calc(16% + var(--i) * 0.7%) cover calc(30% + var(--i) * 0.7%); }
+    }
+  }
+  @keyframes lit { to { opacity: 1; } }
   /* Four facts on one ruled line, no boxes */
   .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); margin-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--border); }
   .fact { padding: 1.5rem 1.5rem 0.5rem 0; }
@@ -276,9 +281,16 @@
   .after-compare { margin-top: clamp(2.5rem, 5vw, 4rem); max-width: 46rem; }
 
   /* MagicBento theming: six services */
-  .card-grid.bento-section { max-width: none; width: 100%; padding: 0; gap: var(--gap); font-size: 1rem; }
-  .magic-bento-card { aspect-ratio: auto; max-width: none; background: var(--plate); border: 1px solid var(--border-soft); border-radius: var(--r-card); box-shadow: var(--plate-shadow); min-height: 15rem; padding: clamp(1.5rem, 2.4vw, 2rem); color: var(--fg-2); }
-  .magic-bento-card:hover { border-color: rgb(var(--a) / 0.3); }
+  .bento { display: grid; gap: var(--gap); }
+  @media (min-width: 600px) { .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) {
+    .bento { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .bento-card:nth-child(3) { grid-column: span 2; grid-row: span 2; }
+    .bento-card:nth-child(4) { grid-column: 1 / span 2; grid-row: 2 / span 2; }
+    .bento-card:nth-child(6) { grid-column: 4; grid-row: 3; }
+  }
+  .bento-card { position: relative; overflow: hidden; min-height: 15rem; padding: clamp(1.5rem, 2.4vw, 2rem); border-radius: var(--r-card); border: 1px solid var(--border-soft); background: var(--plate); box-shadow: var(--plate-shadow); color: var(--fg-2); transition: border-color 0.4s var(--ease), transform 0.4s var(--ease); }
+  .bento-card:hover, .bento-card:focus-within { border-color: rgb(var(--a) / 0.3); transform: translateY(-2px); }
   .svc { position: relative; z-index: 2; display: grid; align-content: end; gap: 2rem; height: 100%; padding-top: 6.5rem; }
   .svc-fig { position: absolute; right: 0; top: 0; height: 6.25rem; max-width: 60%; }
   .svc.big { padding-top: 11rem; }
@@ -290,7 +302,7 @@
   .iso-t { fill: color-mix(in oklab, var(--surface), var(--fg) 11%); }
   .iso-r { fill: color-mix(in oklab, var(--surface), var(--fg) 4%); }
   .iso-l { fill: var(--surface); }
-  :is(.magic-bento-card, .acc a):is(:hover, :focus-within, :focus-visible) .iso { color: rgb(var(--f) / 0.9); }
+  :is(.bento-card, .acc a):is(:hover, :focus-within, :focus-visible) .iso { color: rgb(var(--f) / 0.9); }
   .svc h3 { margin-bottom: 0.6rem; }
   .svc h3 a { text-decoration: none; }
   .svc h3 a::after { content: ''; position: absolute; inset: 0; }

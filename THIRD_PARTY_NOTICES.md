@@ -3,7 +3,7 @@
 ## React Bits
 
 Components in `src/components/bits/` are adapted from React Bits (https://github.com/DavidHDev/react-bits):
-CountUp, LightRays, MagicBento, MetallicPaint, ScrollReveal, SplitText, Threads, TiltedCard. They are used as part of this website only and are not sold, sublicensed or
+CountUp, LightRays, MetallicPaint, Threads, TiltedCard. They are used as part of this website only and are not sold, sublicensed or
 redistributed on their own.
 
 ```

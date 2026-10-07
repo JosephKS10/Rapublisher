@@ -1,7 +1,6 @@
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router'
 import { BeforeAfter, Commitments, CtaBand, Facts, Faq, Img, IndustryPanels, ProblemList, ServiceBento, TeamCards, WorkSwap } from '../components/blocks'
-import ScrollReveal from '../components/bits/ScrollReveal'
-import SplitText from '../components/bits/SplitText'
 import { Calculator } from '../components/Calculator'
 import { BookButton, Seo } from '../components/ui'
 import { pickFaqs } from '../content/site'
@@ -16,12 +15,12 @@ const heroFront = shotOf('super-pro-services', 'schedule')
 const heroBack = shotOf('multi-site-operations-platform', 'calendar')
 const heroPhone = shotOf('ccsm-mobile-commerce', 'home')
 
-// Section headings reveal word by word as they scroll in (React Bits SplitText).
-const Heading = ({ id, text }: { id: string; text: string }) => (
-  <h2 id={id}>
-    <SplitText text={text} tag="span" splitType="words" delay={60} duration={1} textAlign="left" from={{ opacity: 0, y: 30 }} to={{ opacity: 1, y: 0 }} />
-  </h2>
-)
+// Section headings rise in as they scroll into view (CSS only, see [data-reveal]).
+const Heading = ({ id, text }: { id: string; text: string }) => <h2 id={id} data-reveal>{text}</h2>
+
+// The statement lights up word by word as it scrolls through the viewport (CSS scroll timeline; plain text elsewhere).
+const STATEMENT =
+  "We're forward deployed engineers based in Melbourne. We come to your factory, warehouse or sites, learn how the work really flows, then build and connect the software that ends the double handling. And we stay to look after it."
 
 export default function Home() {
   return (
@@ -45,9 +44,9 @@ export default function Home() {
           </div>
           <div className="hero-stage">
             <div className="scene">
-              {heroBack && <figure className="shot back"><Img s={heroBack} sizes="(min-width: 960px) 46rem, 82vw" eager /></figure>}
-              {heroFront && <figure className="shot front"><Img s={heroFront} sizes="(min-width: 960px) 46rem, 82vw" eager /></figure>}
-              {heroPhone && <figure className="shot phone"><Img s={heroPhone} sizes="12rem" eager /></figure>}
+              {heroBack && <figure className="shot back"><Img s={heroBack} sizes="(min-width: 960px) 46rem, 82vw" /></figure>}
+              {heroFront && <figure className="shot front"><Img s={heroFront} sizes="(min-width: 960px) 46rem, 82vw" eager priority /></figure>}
+              {heroPhone && <figure className="shot phone"><Img s={heroPhone} sizes="12rem" /></figure>}
             </div>
           </div>
         </div>
@@ -55,9 +54,9 @@ export default function Home() {
 
       <section className="section statement" aria-label="What we do">
         <div className="wrap">
-          <ScrollReveal enableBlur baseOpacity={0.12} baseRotation={2} blurStrength={6} containerClassName="scroll-reveal" textClassName="scroll-reveal-text">
-            We're forward deployed engineers based in Melbourne. We come to your factory, warehouse or sites, learn how the work really flows, then build and connect the software that ends the double handling. And we stay to look after it.
-          </ScrollReveal>
+          <p className="statement-text">
+            {STATEMENT.split(' ').map((w, i) => <span key={i} style={{ '--i': i } as CSSProperties}>{w} </span>)}
+          </p>
           <Facts
             items={[
               ['Free site walk', 'About an hour, at your place'],

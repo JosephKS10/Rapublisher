@@ -1,7 +1,6 @@
 import { Fragment, useState, type CSSProperties } from 'react'
 import { Link } from 'react-router'
 import { ArrowRightIcon, CheckIcon } from '@phosphor-icons/react'
-import MagicBento from './bits/MagicBento'
 import { industries } from '../content/industries'
 import { getService } from '../content/services'
 import { commitments, ladder, problems, team } from '../content/site'
@@ -55,39 +54,27 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
   )
 }
 
-// Six services in React Bits' MagicBento grid; operations software and field apps take the two large cells.
+// Six services in a bento grid; operations software and field apps take the two large cells.
 const BENTO_ORDER = ['integrations', 'ai-in-operations', 'operations-software', 'field-and-floor-apps', 'rescue', 'run-and-improve']
 
 export function ServiceBento() {
   return (
-    <div data-reveal>
-      <MagicBento
-        items={BENTO_ORDER.map(getService).filter((s) => !!s).map((s) => {
-          const big = s.slug === 'operations-software' || s.slug === 'field-and-floor-apps'
-          return {
-            key: s.slug,
-            content: (
-              <div className={`svc${big ? ' big' : ''}`}>
-                <Iso name={s.slug} className="svc-fig" />
-                <div>
-                  <h3><Link to={`/services/${s.slug}`}>{s.title}</Link></h3>
-                  <p><Rich text={s.summary} /></p>
-                  <span className="go" aria-hidden="true">Learn more <ArrowRightIcon /></span>
-                </div>
+    <div className="bento" data-reveal>
+      {BENTO_ORDER.map(getService).filter((s) => !!s).map((s) => {
+        const big = s.slug === 'operations-software' || s.slug === 'field-and-floor-apps'
+        return (
+          <article key={s.slug} className="bento-card">
+            <div className={`svc${big ? ' big' : ''}`}>
+              <Iso name={s.slug} className="svc-fig" />
+              <div>
+                <h3><Link to={`/services/${s.slug}`}>{s.title}</Link></h3>
+                <p><Rich text={s.summary} /></p>
+                <span className="go" aria-hidden="true">Learn more <ArrowRightIcon /></span>
               </div>
-            ),
-          }
-        })}
-        textAutoHide={false}
-        enableSpotlight
-        enableBorderGlow
-        enableTilt
-        enableMagnetism={false}
-        clickEffect={false}
-        spotlightRadius={320}
-        particleCount={0}
-        glowColor={accent().csv}
-      />
+            </div>
+          </article>
+        )
+      })}
     </div>
   )
 }
@@ -122,7 +109,8 @@ export function workFields(w: Work): Field[] {
   ]
 }
 
-export const Img = ({ s, sizes = '(min-width: 960px) 40vw, 90vw', eager }: { s: Shot; sizes?: string; eager?: boolean }) => (
+// eager: above the fold. priority: the one image that is the page's largest paint.
+export const Img = ({ s, sizes = '(min-width: 960px) 40vw, 90vw', eager, priority }: { s: Shot; sizes?: string; eager?: boolean; priority?: boolean }) => (
   <img
     src={s.src}
     srcSet={s.small ? `${s.small} ${s.small.match(/-(\d+)\.webp$/)?.[1]}w, ${s.src} ${s.w}w` : undefined}
@@ -131,7 +119,7 @@ export const Img = ({ s, sizes = '(min-width: 960px) 40vw, 90vw', eager }: { s: 
     height={s.h}
     alt={s.alt}
     loading={eager ? 'eager' : 'lazy'}
-    fetchPriority={eager ? 'high' : undefined}
+    fetchPriority={priority ? 'high' : undefined}
     decoding="async"
   />
 )
