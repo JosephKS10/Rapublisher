@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- Template for the social preview images. scripts/og.js opens this with the page title in the URL hash and screenshots it. -->
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: 'Mona'; src: url('../node_modules/@fontsource-variable/mona-sans/files/mona-sans-latin-wdth-normal.woff2') format('woff2'); font-weight: 200 900; font-stretch: 75% 125%; }
+  @font-face { font-family: 'Geist'; src: url('../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; }
+  html, body { margin: 0; }
+  body { box-sizing: border-box; width: 1200px; height: 630px; padding: 64px 72px; display: grid; grid-template-rows: auto 1fr auto; position: relative; overflow: hidden; background: #07080a; color: #f9f9f9; font-family: 'Geist', sans-serif; -webkit-font-smoothing: antialiased; }
+  body::before { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 85% at 88% 12%, rgb(249 249 249 / 0.16), transparent 70%); }
+  .brand { position: relative; display: flex; align-items: center; gap: 16px; font: 600 30px/1 'Mona'; font-stretch: 104%; letter-spacing: -0.035em; }
+  .brand svg { height: 30px; }
+  h1 { position: relative; align-self: center; margin: 0; max-width: 17ch; font: 540 78px/1.03 'Mona'; font-stretch: 104%; letter-spacing: -0.04em; text-wrap: balance; }
+  p { position: relative; margin: 0; font-size: 26px; color: #9c9c9d; }
+</style>
+<div class="brand">
+  <svg viewBox="-0.3 -0.3 8.6 5.6" fill="none" stroke="#f9f9f9">
+    <rect x="5" y="3" width="1" height="1" fill="#f9f9f9" stroke="none" />
+    <path d="M0 0H8V5H0Z M5 0V5 M5 3H8 M6 3V5 M5 4H6" stroke-width="0.2" />
+    <path d="M0 5A5 5 0 0 1 5 0A3 3 0 0 1 8 3A2 2 0 0 1 6 5A1 1 0 0 1 5 4" stroke-width="0.44" />
+  </svg>
+  RaPublisher
+</div>
+<h1 id="title"></h1>
+<p>Forward deployed software engineering, Melbourne</p>
+<script>
+  const title = decodeURIComponent(location.hash.slice(1))
+  const h1 = document.getElementById('title')
+  h1.textContent = title
+  if (title.length > 44) h1.style.fontSize = '64px'
+</script>
