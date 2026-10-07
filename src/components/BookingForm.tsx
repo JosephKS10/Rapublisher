@@ -106,7 +106,7 @@ export function BookingForm() {
   const blur = { onBlur: (e: { target: Control }) => errors[e.target.name] !== undefined && check(e.target) }
 
   return (
-    <form ref={formRef} name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={submit} className="stepper glass">
+    <form ref={formRef} name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={submit} className="stepper glass" aria-label="Book a site walk: three steps (about you, your business, the visit)">
       <input type="hidden" name="form-name" value={FORM_NAME} />
       <p className="hp" aria-hidden="true">
         <label>Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
@@ -244,7 +244,7 @@ export function BookingForm() {
       <div className="form-nav">
         {step > 0 ? <button type="button" className="btn btn-ghost" onClick={() => setStep(step - 1)}>Back</button> : <span className="spacer" />}
         {step < STEPS.length - 1 ? (
-          <button type="button" className="btn btn-primary" onClick={next}>Next</button>
+          <button type="button" className="btn btn-primary" onClick={next} aria-label={`Next: step ${step + 2} of 3`}>Next</button>
         ) : (
           <button type="submit" className="btn btn-primary" disabled={status.kind === 'sending'}>
             {status.kind === 'sending' ? 'Sending' : 'Book a site walk'}
