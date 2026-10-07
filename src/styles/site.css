@@ -212,7 +212,8 @@
   .statement-text { font-family: var(--display); font-stretch: var(--wd); font-size: clamp(1.6rem, 0.9rem + 2.5vw, 3.1rem); line-height: 1.18; letter-spacing: -0.03em; font-weight: 600; color: var(--fg); max-width: 30ch; }
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: view()) {
-      .statement-text span { opacity: 0.16; animation: lit linear both; animation-timeline: view(); animation-range: cover calc(16% + var(--i) * 0.7%) cover calc(30% + var(--i) * 0.7%); }
+      /* Unlit words stay readable: 0.46 keeps them at 4.5:1 on the page background */
+      .statement-text span { opacity: 0.46; animation: lit linear both; animation-timeline: view(); animation-range: cover calc(16% + var(--i) * 0.7%) cover calc(30% + var(--i) * 0.7%); }
     }
   }
   @keyframes lit { to { opacity: 1; } }
