@@ -6,3 +6,5 @@ source-images
 .playwright-cli
 .claude/*.lock
 rapublisher.com.au-audit
+# Internal brief: names and strategy that must stay out of a public repo
+CLAUDE.md
