@@ -1,0 +1,5 @@
+# Search and answer-engine crawlers are welcome, so the site can be cited (B9). [DECISION]
+User-agent: *
+Allow: /
+
+Sitemap: https://rapublisher.com.au/sitemap.xml

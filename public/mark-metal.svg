@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="-0.4 -0.4 8.8 5.8">
+  <clipPath id="c"><rect width="8" height="5"/></clipPath>
+  <rect x="5" y="3" width="1" height="1" fill="#111"/>
+  <path d="M0 0H8V5H0Z M5 0V5 M5 3H8 M6 3V5 M5 4H6" fill="none" stroke="#111" stroke-width="0.26"/>
+  <path d="M0 5A5 5 0 0 1 5 0A3 3 0 0 1 8 3A2 2 0 0 1 6 5A1 1 0 0 1 5 4" fill="none" stroke="#111" stroke-width="0.5" clip-path="url(#c)"/>
+</svg>

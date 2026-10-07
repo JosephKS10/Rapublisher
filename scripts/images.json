@@ -1,0 +1,32 @@
+{
+  "_note": "Originals live in source-images/ (gitignored, never deployed). Blur boxes are in original pixels. Run: npm run images",
+  "images": [
+    { "src": "superpro/superpro-home.png", "out": "super-pro-services/home", "widths": [960, 1800] },
+    { "src": "superpro/superpro-services.png", "out": "super-pro-services/services", "widths": [960, 1800] },
+    { "src": "superpro/superpro-dashboard.png", "out": "super-pro-services/dashboard", "widths": [960, 1800],
+      "blur": [[490, 270, 170, 44], [858, 438, 205, 220]] },
+    { "src": "superpro/superpro-schedule.png", "out": "super-pro-services/schedule", "widths": [960, 1800],
+      "blur": [[490, 158, 170, 46]] },
+
+    { "src": "ccsm/ccsm-splash.png", "out": "ccsm-mobile-commerce/splash", "widths": [480, 900] },
+    { "src": "ccsm/ccsm-home.png", "out": "ccsm-mobile-commerce/home", "widths": [480, 900] },
+    { "src": "ccsm/ccsm-menu.png", "out": "ccsm-mobile-commerce/menu", "widths": [480, 900] },
+    { "src": "ccsm/ccsm-product-details.png", "out": "ccsm-mobile-commerce/product", "widths": [480, 900] },
+    { "src": "ccsm/ccsm-cart.png", "out": "ccsm-mobile-commerce/cart", "widths": [480, 900] },
+
+    { "src": "operations-platform/dashboard.png", "out": "multi-site-operations-platform/orders", "widths": [960, 1800],
+      "crop": [0, 0, 1899, 934], "blur": [[8, 20, 150, 40], [500, 238, 270, 40], [364, 274, 48, 26], [444, 322, 380, 26], [454, 375, 210, 26]] },
+    { "src": "operations-platform/calendar.png", "out": "multi-site-operations-platform/calendar", "widths": [960, 1800],
+      "crop": [0, 0, 1901, 934], "blur": [[8, 20, 150, 40], [558, 396, 190, 46], [1398, 393, 192, 225]] },
+    { "src": "operations-platform/sites.png", "out": "multi-site-operations-platform/sites", "widths": [960, 1800],
+      "crop": [0, 0, 1901, 934], "blur": [[8, 20, 150, 40], [865, 128, 415, 50], [342, 398, 146, 32], [288, 452, 1564, 482]] },
+    { "src": "operations-platform/stock-order.png", "out": "multi-site-operations-platform/stock-order", "widths": [391],
+      "blur": [[186, 80, 94, 46], [186, 302, 94, 46]] },
+
+    { "src": "calpine/calpine-login.jpg", "out": "calpinemate-employee-app/login", "widths": [480, 739] },
+    { "src": "calpine/calpine-dashboard.jpg", "out": "calpinemate-employee-app/dashboard", "widths": [480, 739],
+      "crop": [0, 0, 739, 1450] },
+    { "src": "calpine/calpine-calendar.jpg", "out": "calpinemate-employee-app/calendar", "widths": [480, 739] },
+    { "src": "calpine/calpine-notifications.jpg", "out": "calpinemate-employee-app/notifications", "widths": [480, 739] }
+  ]
+}
