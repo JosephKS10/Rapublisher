@@ -1,0 +1,30 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Every route is prerendered to its own HTML file (scripts/prerender.js), and Netlify serves 404.html
+# for anything else, so no SPA catch-all redirect is needed.
+
+# Security headers (A3). Add the booking tool's domain to frame-src and connect-src once chosen.
+# style-src allows inline style attributes: prerendered pages carry a few (grid columns, tilt sizes) and
+# 'self' alone would block them before React hydrates. Scripts stay strict.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://plausible.io; connect-src 'self' https://plausible.io; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; worker-src 'self' blob:; frame-src 'none'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Staging shows every [TODO], [CONFIRM] and [DECISION] in place; production leaves unfinished sentences out.
+[context.deploy-preview.environment]
+  VITE_REVIEW = "1"
+
+[context.branch-deploy.environment]
+  VITE_REVIEW = "1"
