@@ -16,6 +16,9 @@ export const paths = [
   ...publishedInsights.map((i) => `/insights/${i.slug}`),
 ]
 
+// Pages with a real date. The sitemap gives lastmod only for these: a build date on every URL teaches crawlers to ignore it.
+export const lastmods: Record<string, string> = Object.fromEntries(publishedInsights.map((i) => [`/insights/${i.slug}`, i.date]))
+
 export async function render(path: string) {
   const handler = createStaticHandler(routes)
   const context = await handler.query(new Request(`https://rapublisher.com.au${path}`))
