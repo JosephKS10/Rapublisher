@@ -33,7 +33,7 @@ export default function About() {
         </ul>
       </Section>
 
-      <Section title="Meet the engineers" lead="Both live in Melbourne." wide>
+      <Section title="Meet the engineers" lead="Both live in Melbourne. They do the site walks, design the systems, build them, roll them out on site and look after them." wide>
         <TeamCards />
       </Section>
 

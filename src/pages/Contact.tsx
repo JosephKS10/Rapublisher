@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Book a site walk | RaPublisher"
+        title="Book a site walk in Melbourne | RaPublisher"
         description="Book a free site walk with a Melbourne forward deployed engineer, or tell us what would make your working day easier."
       />
       <PageHead

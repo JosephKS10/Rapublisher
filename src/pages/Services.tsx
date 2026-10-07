@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router'
-import { CtaBand, Faq, RelatedWork, ServiceBento } from '../components/blocks'
+import { CtaBand, Faq, hasWork, RelatedWork, ServiceBento } from '../components/blocks'
 import { Iso } from '../components/Iso'
-import { BookButton, JsonLd, ORG_ID, PageHead, Pair, Paras, Rich, Section, Seo, Ticks } from '../components/ui'
+import { BookButton, JsonLd, ORG_ID, PageHead, Pair, Paras, REVIEW, Rich, Section, Seo, Ticks } from '../components/ui'
+import { getInsight } from '../content/insights'
 import { getService } from '../content/services'
 import { pickFaqs, site } from '../content/site'
 import NotFound from './NotFound'
@@ -33,6 +34,8 @@ export function ServicesIndex() {
 export function ServicePage() {
   const s = getService(useParams().slug)
   if (!s) return <NotFound />
+  const questions = [...s.faqs, ...pickFaqs(...(s.moreFaqs ?? []))]
+  const insight = getInsight(s.insight)
   return (
     <>
       <Seo title={s.metaTitle} description={s.metaDescription} />
@@ -72,18 +75,21 @@ export function ServicePage() {
               <div>
                 <h2>Investment</h2>
                 <p><Rich text={s.investment} /></p>
-                <p className="muted">Prices are in Australian dollars and exclude GST. See <Link to="/pricing">pricing</Link> for how each step is priced.</p>
+                <p className="muted">Prices are in Australian dollars and exclude GST. Every build starts with a free site walk and a fixed-fee Blueprint: see <Link to="/how-we-work">how we work</Link> and <Link to="/pricing">pricing</Link>.</p>
+                {insight && <p className="muted">Background: <Link to={`/insights/${insight.slug}`}>{insight.title}</Link></p>}
               </div>
             )}
           </div>
         </section>
       )}
-      <Section title="Related work" wide>
-        <RelatedWork slugs={s.relatedWork} />
-      </Section>
-      {s.faqs.length > 0 && (
+      {(hasWork(s.relatedWork) || REVIEW) && (
+        <Section title="Related work" wide>
+          <RelatedWork slugs={s.relatedWork} />
+        </Section>
+      )}
+      {questions.length > 0 && (
         <Section title="Questions">
-          <Faq items={s.faqs} />
+          <Faq items={questions} />
         </Section>
       )}
       <CtaBand />

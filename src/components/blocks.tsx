@@ -9,7 +9,7 @@ import { Iso } from './Iso'
 import { Live } from './Live'
 import { Mark } from './Logo'
 import { accent } from './palette'
-import { BookButton, filled, hasPhone, PhoneLink, Rich, TitleBlock, type Field } from './ui'
+import { BookButton, filled, hasPhone, PhoneLink, Rich, slug, TitleBlock, type Field } from './ui'
 
 
 export function CtaBand() {
@@ -150,6 +150,8 @@ export function CaseGrid({ items }: { items: Work[] }) {
   return <div className="cases" data-reveal>{items.map((w) => <CaseCard key={w.slug} w={w} />)}</div>
 }
 
+export const hasWork = (slugs: string[]) => slugs.some((s) => !!getWork(s))
+
 // Related work for service and industry pages. Drafts are filtered out by getWork.
 export function RelatedWork({ slugs }: { slugs: string[] }) {
   const items = slugs.map(getWork).filter((w): w is Work => !!w)
@@ -167,7 +169,7 @@ export function WorkSwap({ items }: { items: Work[] }) {
         {items.map((w, i) => (
           <li key={w.slug}>
             <Link to={`/work/${w.slug}`} className="work-row" data-active={i === active || undefined} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}>
-              <b>{w.title}</b>
+              <b>{w.title}</b>{' '}
               <span><Rich text={clientLabel(w)} />, led by <Rich text={w.ledBy.join(', ')} /></span>
             </Link>
           </li>
@@ -236,7 +238,7 @@ export function TeamCards() {
   return (
     <div className="team">
       {team.map((m) => (
-        <article className={`person${m.photo ? '' : ' no-photo'}`} key={m.name} data-reveal>
+        <article id={slug(m.name)} className={`person${m.photo ? '' : ' no-photo'}`} key={m.name} data-reveal>
           <div className="portrait">
             {m.photo ? <img src={m.photo} alt={`${m.name} on site`} loading="lazy" /> : <Mark className="art" line />}
             {!m.photo && <b aria-hidden="true">{m.name.split(' ').map((n) => n[0]).join('')}</b>}

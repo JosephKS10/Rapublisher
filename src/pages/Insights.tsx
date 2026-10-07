@@ -12,7 +12,7 @@ const day = (d: string) => fmt.format(new Date(`${d}T00:00:00Z`))
 
 const Byline = ({ i }: { i: Insight }) => (
   <p className="byline">
-    <Rich text={i.author} />, <time dateTime={i.date}>{day(i.date)}</time>
+    <Link to="/about"><Rich text={i.author} /></Link>, <time dateTime={i.date}>{day(i.date)}</time>
   </p>
 )
 
@@ -23,7 +23,7 @@ export default function Insights() {
         title="Insights and field notes | RaPublisher"
         description="Articles and field notes from Melbourne forward deployed engineers on operations software, integrations and practical AI."
       />
-      <PageHead title="Insights" lead="Articles and field notes from Ramin and Joseph, from the floor and from the build." crumbs={[{ to: '/insights', label: 'Insights' }]} />
+      <PageHead title="Insights" lead="Articles from RaPublisher's engineers on how we work, what custom software costs and what double handling costs." crumbs={[{ to: '/insights', label: 'Insights' }]} />
       <div className="wrap pad-b">
         {publishedInsights.length ? (
           <ul className="posts">

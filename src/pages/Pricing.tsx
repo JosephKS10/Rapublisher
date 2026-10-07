@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router'
 import { CtaBand, Faq, PricingLadder } from '../components/blocks'
 import { Calculator } from '../components/Calculator'
 import { filled, PageHead, Rich, Section, Seo, Ticks, track } from '../components/ui'
@@ -9,13 +10,13 @@ export default function Pricing() {
   return (
     <>
       <Seo
-        title="Pricing: what custom software costs | RaPublisher"
+        title="Pricing: site walk, Blueprint and build | RaPublisher"
         description="A free site walk, a fixed-fee Blueprint, a fixed price for each build phase and monthly support plans. Typical ranges, plus GST."
       />
       <PageHead
         crumbs={[{ to: '/pricing', label: 'Pricing' }]}
         title="What it costs"
-        lead="Custom software isn't cheap, and it shouldn't be a mystery. Here's how we price, what's typical, and what moves the number."
+        lead="Custom software isn't cheap, and it shouldn't be a mystery. Here's how RaPublisher prices its work, what's typical, and what moves the number."
       />
 
       <Section title="Four steps, each priced before we start" lead="Each step is useful on its own, so you can stop at any rung and still be better off." wide>
@@ -49,6 +50,7 @@ export default function Pricing() {
           </table>
         </div>
         <p>These are ranges, not quotes. Your Blueprint gives you a fixed price.</p>
+        <p><Link to="/insights/custom-software-cost-melbourne" className="text-link">How these compare with published Melbourne rates</Link></p>
       </Section>
 
       <Section title="What moves the price">

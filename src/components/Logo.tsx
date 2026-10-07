@@ -65,7 +65,7 @@ export function ProcessDrawing({ active, animate, caption }: { active?: number; 
             aria-hidden="true"
             style={{ left: `${(q.x / 8) * 100}%`, top: `${(q.y / 5) * 100}%`, width: `${(q.s / 8) * 100}%`, height: `${(q.s / 5) * 100}%`, '--i': i } as CSSProperties}
           >
-            <b>{processSteps[i].title}</b>
+            <b>{processSteps[i].title}</b>{' '}
             <span>{cleanText(processSteps[i].meta).split('. ')[0].replace(/\.$/, '')}</span>
           </div>
         ))}

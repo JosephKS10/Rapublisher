@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { Fragment, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router'
 import { CaseGrid, CtaBand, Img, workFields } from '../components/blocks'
 import TiltedCard from '../components/bits/TiltedCard'
 import { PageHead, Rich, Section, Seo, TitleBlock, Ticks, filled, track } from '../components/ui'
+import { cleanText } from '../content/markers'
+import { getService } from '../content/services'
 import { getWork, published, verifiedOutcomes, type Work } from '../content/work'
 import NotFound from './NotFound'
 
@@ -21,7 +23,7 @@ export function WorkIndex() {
     <>
       <Seo
         title="Work our engineers have led | RaPublisher"
-        description="Workforce portals, operations platforms, B2B ordering and mobile apps for Australian businesses, led by our Melbourne engineers."
+        description="Workforce portals, operations platforms and mobile apps for businesses that run on crews, stock and sites, led by our Melbourne engineers."
       />
       <PageHead
         title="Work our engineers have led"
@@ -48,12 +50,13 @@ export function CaseStudy() {
   useEffect(() => { if (w) track('case_study_view', { slug: w.slug }) }, [w])
   if (!w) return <NotFound />
   const outcomes = verifiedOutcomes(w)
+  const related = w.services.map(getService).filter((s) => !!s)
   const quote = w.testimonial?.permission ? w.testimonial : undefined
   const img = w.images[0]
   const heroH = img && (img.mobile ? `calc(18rem * ${img.h / img.w})` : `calc(min(100vw - 2 * var(--pad), 78rem) * ${(img.h / img.w).toFixed(4)})`)
   return (
     <>
-      <Seo title={w.metaTitle ?? `${w.title} | RaPublisher`} description={w.summary.length > 155 ? w.summary.split('. ')[0] + '.' : w.summary} />
+      <Seo title={w.metaTitle ?? `${w.title} | RaPublisher`} description={w.metaDescription ?? (w.summary.length > 155 ? w.summary.split('. ')[0] + '.' : w.summary)} />
       <PageHead title={w.title} lead={w.summary} crumbs={[{ to: '/work', label: 'Work' }, { to: `/work/${w.slug}`, label: w.title }]}>
         <div className="mt-2"><TitleBlock fields={workFields(w)} /></div>
         {w.note && filled(w.note) && <p className="mt-2"><Rich text={w.note} /></p>}
@@ -75,9 +78,12 @@ export function CaseStudy() {
         </div>
       )}
 
-      <Section title="The situation">
-        <p className="lead"><Rich text={w.problem} /></p>
-      </Section>
+      {/* Skipped while the situation only repeats the summary above it */}
+      {!cleanText(w.summary).includes(cleanText(w.problem)) && (
+        <Section title="The situation">
+          <p className="lead"><Rich text={w.problem} /></p>
+        </Section>
+      )}
       {w.onSite && filled(w.onSite) && (
         <Section title="What we saw on site">
           <p><Rich text={w.onSite} /></p>
@@ -85,6 +91,11 @@ export function CaseStudy() {
       )}
       <Section title="What we built">
         <Ticks items={w.built} />
+        {related.length > 0 && (
+          <p className="muted">
+            Related services: {related.map((s, i) => <Fragment key={s.slug}>{i > 0 && ', '}<Link to={`/services/${s.slug}`}>{s.title}</Link></Fragment>)}
+          </p>
+        )}
       </Section>
       {w.images.length > 1 && (
         <section className="gallery-wrap" aria-label="Screens from the build">

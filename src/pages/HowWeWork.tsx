@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router'
 import { CtaBand, Faq } from '../components/blocks'
 import { ProcessDrawing } from '../components/Logo'
 import { PageHead, Rich, Section, Seo, Ticks } from '../components/ui'
@@ -116,6 +117,7 @@ export default function HowWeWork() {
           teams for enterprise clients. We've taken the same idea and sized it for Victorian businesses with 10 to 200 people and no
           developers of their own.
         </p>
+        <p><Link to="/insights/what-is-a-forward-deployed-engineer" className="text-link">What a forward deployed engineer is, and why it matters for a 40-person business</Link></p>
       </Section>
 
       <Section title="Questions">

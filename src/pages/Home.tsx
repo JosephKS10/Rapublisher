@@ -108,7 +108,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <Heading id="work-led" text="Work our engineers have led" />
-            <p>Systems for Australian businesses that run on crews, stock and sites.</p>
+            <p>Systems for businesses that run on crews, stock and sites.</p>
           </div>
           <WorkSwap items={featured} />
           <p className="mt-2"><Link to="/work" className="text-link">See all work</Link></p>
@@ -150,7 +150,7 @@ export default function Home() {
         <div className="wrap grid team-split">
           <div className="section-head">
             <h2 id="people">The people you meet are the people who build it</h2>
-            <p>Both live in Melbourne.</p>
+            <p>Both live in Melbourne. <Link to="/about" className="text-link">About Ramin and Joseph</Link></p>
           </div>
           <TeamCards />
         </div>

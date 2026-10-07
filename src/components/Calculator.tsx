@@ -1,4 +1,5 @@
 import { useRef, useState, type CSSProperties } from 'react'
+import { Link } from 'react-router'
 import CountUp from './bits/CountUp'
 import { BookButton, Rich, filled, track } from './ui'
 
@@ -59,7 +60,7 @@ export function Calculator() {
         <p className="formula">
           {v.people} people × ({v.minutes} ÷ 60) hours × {aud(v.hourly)} × {v.days} days
         </p>
-        <p className="small">A rough estimate, not a quote. Errors, rework and late deliveries come on top.</p>
+        <p className="small">A rough estimate, not a quote. Errors, rework and late deliveries come on top. <Link to="/insights/real-cost-of-double-handling">How the formula works, and what it leaves out</Link>.</p>
         <p>Want to check the number?</p>
         <div><BookButton /></div>
       </div>

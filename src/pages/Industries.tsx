@@ -1,8 +1,10 @@
-import { useParams } from 'react-router'
-import { CtaBand, IndustryPanels, RelatedWork } from '../components/blocks'
+import { Link, useParams } from 'react-router'
+import { CtaBand, Faq, IndustryPanels, RelatedWork } from '../components/blocks'
 import { Iso } from '../components/Iso'
-import { BookButton, PageHead, Pair, Paras, Section, Seo } from '../components/ui'
+import { BookButton, PageHead, Pair, Paras, Rich, Section, Seo } from '../components/ui'
 import { getIndustry } from '../content/industries'
+import { getService } from '../content/services'
+import { pickFaqs } from '../content/site'
 import NotFound from './NotFound'
 
 export function IndustriesIndex() {
@@ -39,9 +41,21 @@ export function IndustryPage() {
       <Section title={i.special.heading}>
         {i.special.body && <Paras text={i.special.body} />}
       </Section>
+      <Section title="Where we usually start">
+        <ul className="ruled">
+          {i.services.map(getService).filter((s) => !!s).map((s) => (
+            <li key={s.slug}><Link to={`/services/${s.slug}`} className="text-link">{s.title}</Link>: <Rich text={s.summary} /></li>
+          ))}
+        </ul>
+      </Section>
       <Section title="Related work" wide>
         <RelatedWork slugs={i.proof} />
       </Section>
+      {i.faqs && (
+        <Section title="Questions">
+          <Faq items={pickFaqs(...i.faqs)} />
+        </Section>
+      )}
       <CtaBand />
     </>
   )
