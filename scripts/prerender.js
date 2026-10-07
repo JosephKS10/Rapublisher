@@ -1,9 +1,15 @@
 // Renders every route to static HTML after `vite build` (A2: static first). Also writes 404.html and sitemap.xml.
-import { readFile, writeFile, mkdir, rm } from 'node:fs/promises'
+import { readFile, readdir, writeFile, mkdir, rm } from 'node:fs/promises'
 import { dirname } from 'node:path'
 
 const { render, paths, lastmods } = await import('../dist-ssr/entry-server.js')
-const template = await readFile('dist/index.html', 'utf8')
+// Preload the two fonts every first view needs (display and body, latin), so text paints in its final face sooner.
+const assets = await readdir('dist/assets')
+const fonts = ['mona-sans-latin-wdth-normal', 'geist-latin-wght-normal'].map((n) => assets.find((f) => f.startsWith(n) && f.endsWith('.woff2'))).filter(Boolean)
+const template = (await readFile('dist/index.html', 'utf8')).replace(
+  '</head>',
+  fonts.map((f) => `<link rel="preload" as="font" type="font/woff2" href="/assets/${f}" crossorigin />`).join('') + '</head>',
+)
 const SITE = 'https://rapublisher.com.au'
 
 // React 19 emits <title>, <meta> and <link> first when there's no <head> in the tree; move them into the real head.
