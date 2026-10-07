@@ -1,4 +1,5 @@
-# Search and answer-engine crawlers are welcome, so the site can be cited (B9). [DECISION]
+# rapublisher.com.au
+# Search engines and AI answer engines are welcome to crawl and cite this site.
 User-agent: *
 Allow: /
 
