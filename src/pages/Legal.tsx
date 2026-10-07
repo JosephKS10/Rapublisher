@@ -33,15 +33,15 @@ export const Privacy = () => (
     description="How RaPublisher collects, uses, stores and shares personal information, and how to access, correct or complain about it."
     lead="[TODO: lawyer to draft and review before launch. Date the policy and review it every six months.]"
     sections={[
-      ['Who we are', 'RA PUBLISHER PTY LTD, ACN 643 002 279, ABN [TODO]. Contact: ' + site.email + '.'],
+      ['Who we are', 'RA PUBLISHER PTY LTD, ACN 643 002 279. ABN [TODO]. Contact: ' + site.email + '.'],
       ['What we collect', 'Enquiry and booking details you send us, emails, and website analytics collected without cookies. [TODO]'],
       ['Why we collect it', '[TODO]'],
-      ['Who we share it with', 'Hosting, email, booking and CRM providers, listed by type. [TODO]'],
+      ['Who we share it with', '[TODO: hosting, email, booking and CRM providers, listed by type]'],
       ['Overseas disclosure', '[TODO: countries where providers or people may store or access information, matching where the engineering happens (B5)]'],
       ['How long we keep it', '[TODO]'],
       ['Security', '[TODO]'],
       ['Accessing or correcting your information', '[TODO]'],
-      ['Complaints', 'How to complain to us, and the Office of the Australian Information Commissioner (OAIC) as the next step. [TODO]'],
+      ['Complaints', '[TODO: how to complain to us, and the Office of the Australian Information Commissioner (OAIC) as the next step]'],
     ]}
   />
 )
@@ -67,7 +67,7 @@ export function Accessibility() {
     <>
       <Legal
         title="Accessibility"
-        description="RaPublisher aims to meet WCAG 2.2 level AA. What we've tested, known issues, and how to tell us about a problem."
+        description="RaPublisher aims to meet WCAG 2.2 level AA. How to tell us if something on this site is hard to use."
         lead="We want everyone to be able to use this site, including people who use a keyboard, a screen reader or zoom."
         sections={[
           ['Our target', 'We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA.'],
