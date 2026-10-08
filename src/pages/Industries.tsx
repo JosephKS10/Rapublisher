@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router'
 import { CtaBand, Faq, IndustryPanels, RelatedWork } from '../components/blocks'
-import { Iso } from '../components/Iso'
+import { Iso, neonOf, toneOf } from '../components/Iso'
 import { BookButton, PageHead, Pair, Paras, Rich, Section, Seo } from '../components/ui'
 import { getIndustry } from '../content/industries'
 import { getService } from '../content/services'
@@ -16,6 +16,7 @@ export function IndustriesIndex() {
       />
       <PageHead
         title="Businesses we know"
+        tone={['rose', 'orange', 'lime']}
         lead="Victorian businesses that make, move and service physical things, and run on spreadsheets, disconnected apps and a few people's memory."
         crumbs={[{ to: '/industries', label: 'Industries' }]}
       />
@@ -34,10 +35,10 @@ export function IndustryPage() {
   return (
     <>
       <Seo title={i.metaTitle} description={i.metaDescription} />
-      <PageHead title={i.h1} lead={i.lead} art={<Iso name={i.slug} />} crumbs={[{ to: '/industries', label: 'Industries' }, { to: `/industries/${i.slug}`, label: i.title }]}>
+      <PageHead title={i.h1} lead={i.lead} art={<Iso name={i.slug} />} style={neonOf(i.slug)} tone={toneOf(i.slug)} crumbs={[{ to: '/industries', label: 'Industries' }, { to: `/industries/${i.slug}`, label: i.title }]}>
         <div className="actions mt-2"><BookButton /></div>
       </PageHead>
-      <Pair before={{ title: 'What gets in the way', items: i.pains }} after={{ title: 'What we build', items: i.systems }} />
+      <Pair style={neonOf(i.slug)} before={{ title: 'What gets in the way', items: i.pains }} after={{ title: 'What we build', items: i.systems }} />
       <Section title={i.special.heading}>
         {i.special.body && <Paras text={i.special.body} />}
       </Section>

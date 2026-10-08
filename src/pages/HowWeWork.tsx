@@ -37,11 +37,11 @@ function Process() {
 const compare = [
   ['Starting point', 'A brief written in a meeting', 'Time on your floor with your people'],
   ['Who you deal with', 'An account manager', 'The engineers who build it'],
-  ['When you see progress', 'Near the end', 'Every week'],
-  ['Price', 'Hourly estimates', 'A fixed price for each phase, agreed after the Blueprint'],
+  ['When you see progress', 'Near the end', 'As it is built'],
+  ['Price', 'A quote from a one-line brief', "A proposal once we've seen the work"],
   ['Rollout', 'A handover email and a manual', 'Training on site, around your shifts'],
-  ['After launch', 'A ticket queue', 'The same engineers, plus a quarterly visit'],
-  ['Ownership', 'Sometimes unclear', 'You own the code, data and accounts from day one'],
+  ['After launch', 'A ticket queue', 'The same engineers, who know your operation'],
+  ['Ownership', 'Sometimes unclear', 'Set out plainly in your agreement'],
 ]
 
 export default function HowWeWork() {
@@ -49,10 +49,11 @@ export default function HowWeWork() {
     <>
       <Seo
         title="How forward deployed engineering works | RaPublisher"
-        description="We start on your floor, not with a brief. A free site walk, a fixed-fee Blueprint, fixed-price builds and the same engineers after go-live."
+        description="We start on your floor, not with a brief: a conversation, a site walk, a Blueprint, then a build looked after by the same engineers."
       />
       <PageHead
         crumbs={[{ to: '/how-we-work', label: 'How we work' }]}
+        tone={['violet', 'cyan', 'lime']}
         title="We learn the work first. Then we build the software."
         lead="A forward deployed engineer works inside your operation: on the floor, in the warehouse, out at your sites. That's how we find out how the work really flows, and it's why what we build gets used."
       />

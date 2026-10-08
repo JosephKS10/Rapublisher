@@ -1,59 +1,42 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router'
 import { CtaBand, Faq, PricingLadder } from '../components/blocks'
 import { Calculator } from '../components/Calculator'
-import { filled, PageHead, Rich, Section, Seo, Ticks, track } from '../components/ui'
-import { pickFaqs, typicalRanges } from '../content/site'
+import { PageHead, Section, Seo, Ticks, track } from '../components/ui'
+import { pickFaqs } from '../content/site'
 
+// No prices are published (owner's decision, 8 October 2026): every engagement is quoted by proposal after a
+// conversation and a site walk. This page explains how that works.
 export default function Pricing() {
   useEffect(() => track('pricing_view'), [])
   return (
     <>
       <Seo
-        title="Pricing: site walk, Blueprint and build | RaPublisher"
-        description="A free site walk, a fixed-fee Blueprint, a fixed price for each build phase and monthly support plans. Typical ranges, plus GST."
+        title="How we price our work | RaPublisher"
+        description="We don't publish a price list. Every engagement is scoped and quoted after a conversation and a look at the work, in a written proposal."
       />
       <PageHead
         crumbs={[{ to: '/pricing', label: 'Pricing' }]}
-        title="What it costs"
-        lead="Custom software isn't cheap, and it shouldn't be a mystery. Here's how RaPublisher prices its work, what's typical, and what moves the number."
+        tone={['violet', 'lime', 'cyan']}
+        title="Priced once we understand the work"
+        lead="We don't publish prices, because we don't sell packages. Every engagement is shaped around one business, so we talk first, see the work for ourselves, and then put a proposal in front of you."
       />
 
-      <Section title="Four steps, each priced before we start" lead="Each step is useful on its own, so you can stop at any rung and still be better off." wide>
-        {filled('[DECISION: all figures on this page]') && <p><Rich text="[DECISION: all figures on this page]" /></p>}
+      <Section title="From first conversation to proposal" lead="We take the time to understand a business before we put a number on anything." wide>
         <PricingLadder />
       </Section>
 
-      <Section title="Other ways to start">
-        <ul className="ruled">
-          <li><strong>Rescue check:</strong> from A$2,500 plus GST. A plain-English report on an existing system or AI-built tool, with a fixed quote to fix it.</li>
-          <li><strong>Embedded engineer:</strong> <Rich text="A$1,100 to A$1,400 a day plus GST [DECISION], in blocks of five days or more, for teams that need an engineer on site." /></li>
-        </ul>
+      <Section title="Why there's no price list">
+        <p className="lead">
+          Two businesses can ask for the same thing and need very different work. One has tidy data and a single site. The other has
+          ten years of spreadsheets and crews spread across dozens of sites.
+        </p>
+        <p>
+          A price pulled from a list would be wrong for both. So we look first, and you get a proposal that fits your business: what
+          we'll do, how long it should take and what it costs.
+        </p>
       </Section>
 
-      <Section title="Typical ranges" wide>
-        <div className="table-wrap">
-          <table className="table stacks">
-            <caption className="sr-only">Typical ranges, plus GST</caption>
-            <thead>
-              <tr><th scope="col">Work</th><th scope="col">Typical range (plus GST)</th><th scope="col">Typical time</th></tr>
-            </thead>
-            <tbody>
-              {typicalRanges.map((r) => (
-                <tr key={r.work}>
-                  <th scope="row">{r.work}</th>
-                  <td className="data" data-label="Range">{r.range}</td>
-                  <td className="data" data-label="Time">{r.time}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p>These are ranges, not quotes. Your Blueprint gives you a fixed price.</p>
-        <p><Link to="/insights/custom-software-cost-melbourne" className="text-link">How these compare with published Melbourne rates</Link></p>
-      </Section>
-
-      <Section title="What moves the price">
+      <Section title="What shapes the cost">
         <Ticks
           items={[
             'How many kinds of users there are and how many screens they need.',
@@ -70,18 +53,24 @@ export default function Pricing() {
         <Calculator />
       </Section>
 
-      <Section title="Paying for it">
-        <p><Rich text="A deposit starts each phase, with payments at agreed milestones. [CONFIRM terms] Hosting and app subscriptions are billed to you directly by the provider, so you always own the accounts." /></p>
+      <Section title="Other ways to work with us">
+        <ul className="ruled">
+          <li><strong>Rescue check.</strong> A careful review of an existing system, a stalled project or an AI-built tool, with a plain-English report on what it needs.</li>
+          <li><strong>Embedded engineer.</strong> For teams that need an engineer on site, working alongside their own people for a period.</li>
+        </ul>
+        <p>Both are quoted after a first conversation.</p>
+      </Section>
+
+      <Section title="Grants and tax incentives">
         <p>
-          <strong>Grants and tax incentives.</strong> Some projects may be eligible for government grants or the R&amp;D Tax Incentive, but
-          many software projects aren't. Ask your accountant or tax adviser before counting on either.
+          Some projects may be eligible for government grants or the R&amp;D Tax Incentive, but many software projects aren't. Ask your
+          accountant or tax adviser before counting on either.
         </p>
         <p className="note">General information only, not tax advice.</p>
-        <p><strong>Small print:</strong> All prices are in Australian dollars and exclude GST.</p>
       </Section>
 
       <Section title="Questions">
-        <Faq items={pickFaqs(4, 5, 6, 7, 16, 17)} />
+        <Faq items={pickFaqs(4, 6, 5, 16, 17)} />
       </Section>
 
       <CtaBand />

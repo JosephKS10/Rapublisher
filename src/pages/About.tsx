@@ -13,6 +13,7 @@ export default function About() {
         <JsonLd key={m.name} data={{ '@context': 'https://schema.org', '@type': 'Person', '@id': personId(m.name), name: m.name, jobTitle: m.role, url: `${site.url}/about`, worksFor: { '@id': ORG_ID }, homeLocation: { '@type': 'Place', name: 'Melbourne, Victoria, Australia' } }} />
       ))}
       <PageHead
+        tone={['orange', 'rose', 'violet']}
         title="Engineers who'd rather see the floor than read the brief"
         lead="RaPublisher is a Melbourne software engineering business. We work inside our clients' operations, build the systems they need, and look after them for the long run."
         crumbs={[{ to: '/about', label: 'About' }]}

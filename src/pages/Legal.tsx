@@ -77,7 +77,7 @@ export function Accessibility() {
       />
       <div className="wrap pad-b">
         <h2>Having trouble?</h2>
-        <p className="mt-2">Email <EmailLink /> and tell us what happened. We'll reply within one business day. <Rich text="[CONFIRM]" /></p>
+        <p className="mt-2">Email <EmailLink /> and tell us what happened, and we'll look into it.</p>
       </div>
     </>
   )

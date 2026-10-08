@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router'
-import { CaseGrid, CtaBand, Img, workFields } from '../components/blocks'
-import TiltedCard from '../components/bits/TiltedCard'
+import { CaseGrid, CtaBand, DeviceStage, Img, Phone, workFields } from '../components/blocks'
 import { PageHead, Rich, Section, Seo, TitleBlock, Ticks, filled, track } from '../components/ui'
 import { cleanText } from '../content/markers'
 import { getService } from '../content/services'
@@ -27,6 +26,7 @@ export function WorkIndex() {
       />
       <PageHead
         title="Work our engineers have led"
+        tone={['violet', 'pink', 'orange']}
         lead="Systems for businesses that run on crews, stock and sites. Each one started with time spent understanding the work."
         crumbs={[{ to: '/work', label: 'Work' }]}
       />
@@ -53,7 +53,6 @@ export function CaseStudy() {
   const related = w.services.map(getService).filter((s) => !!s)
   const quote = w.testimonial?.permission ? w.testimonial : undefined
   const img = w.images[0]
-  const heroH = img && (img.mobile ? `calc(18rem * ${img.h / img.w})` : `calc(min(100vw - 2 * var(--pad), 78rem) * ${(img.h / img.w).toFixed(4)})`)
   return (
     <>
       <Seo title={w.metaTitle ?? `${w.title} | RaPublisher`} description={w.metaDescription ?? (w.summary.length > 155 ? w.summary.split('. ')[0] + '.' : w.summary)} />
@@ -64,17 +63,7 @@ export function CaseStudy() {
 
       {img && (
         <div className="wrap case-hero" data-reveal>
-          {/* React Bits TiltedCard: the lead screen tilts toward the pointer */}
-          <TiltedCard
-            imageSrc={img.src}
-            altText={img.alt}
-            containerWidth="100%"
-            containerHeight={heroH}
-            imageWidth={img.mobile ? '18rem' : '100%'}
-            imageHeight={heroH}
-            scaleOnHover={1.02}
-            rotateAmplitude={img.mobile ? 10 : 5}
-          />
+          <DeviceStage w={w} />
         </div>
       )}
 
@@ -104,7 +93,7 @@ export function CaseStudy() {
             {w.images.map((s) => (
               <li key={s.src} className={s.mobile ? 'mob' : undefined}>
                 <figure>
-                  <div className="bezel"><Img s={{ ...s, alt: '' }} sizes={s.mobile ? '15rem' : '(min-width: 960px) 58rem, 86vw'} /></div>
+                  {s.mobile ? <Phone s={s} sizes="15rem" tone={w.phone} /> : <div className="bezel"><Img s={{ ...s, alt: '' }} sizes="(min-width: 960px) 58rem, 86vw" /></div>}
                   <figcaption>{s.caption ?? s.alt}</figcaption>
                 </figure>
               </li>

@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'react'
+import { Fragment, useEffect, useRef, type CSSProperties } from 'react'
 import { Link } from 'react-router'
-import { BeforeAfter, Commitments, CtaBand, Facts, Faq, Img, IndustryPanels, ProblemList, ServiceBento, TeamCards, WorkSwap } from '../components/blocks'
+import { BeforeAfter, Care, CtaBand, Facts, Faq, Img, IndustryPanels, Phone, ProblemList, ServiceBento, TeamCards, WorkSwap } from '../components/blocks'
 import { Calculator } from '../components/Calculator'
 import { BookButton, Seo } from '../components/ui'
 import { pickFaqs } from '../content/site'
@@ -18,16 +18,26 @@ const heroPhone = shotOf('ccsm-mobile-commerce', 'home')
 // Section headings rise in as they scroll into view (CSS only, see [data-reveal]).
 const Heading = ({ id, text }: { id: string; text: string }) => <h2 id={id} data-reveal>{text}</h2>
 
-// The statement lights up word by word as it scrolls through the viewport (CSS scroll timeline; plain text elsewhere).
+// The statement rises into place word by word as it scrolls up the screen. Browsers with CSS scroll timelines tie it
+// to the scroll position; the others play it once when the paragraph comes into view (the observer below).
 const STATEMENT =
-  "We're forward deployed engineers based in Melbourne. We come to your factory, warehouse or sites, learn how the work really flows, then build and connect the software that ends the double handling. And we stay to look after it."
+  "We're forward deployed engineers based in Melbourne. We come to your factory, warehouse or sites and learn the work from the people who do it. Then we build the software that takes the double handling off their plates, and we stay to look after it."
 
 export default function Home() {
+  const statement = useRef<HTMLParagraphElement>(null)
+  useEffect(() => {
+    const el = statement.current
+    if (!el || CSS.supports('animation-timeline: view()') || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    el.dataset.ready = ''
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && ((el.dataset.in = ''), io.disconnect()), { threshold: 0.25 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
   return (
     <>
       <Seo
         title="Forward deployed engineers, Melbourne | RaPublisher"
-        description="Melbourne engineers who come on site, learn how your business runs, and build the software that ends double handling. Book a free site walk."
+        description="Melbourne engineers who come on site, learn how your business runs, and build the software that ends double handling. It starts with a conversation."
       />
 
       <section className="hero" aria-labelledby="hero-title">
@@ -36,7 +46,7 @@ export default function Home() {
             <h1 id="hero-title" className="hero-title">
               <span>Software built where</span> <span className="accent">the work happens.</span>
             </h1>
-            <p className="hero-lead">We come into your business, learn how the work flows, and build the software that gets rid of the double handling.</p>
+            <p className="hero-lead">We spend time in your business, get to know your people and how the work really flows, then build software that makes their days easier.</p>
             <div className="actions">
               <BookButton />
               <Link to="/work" className="btn btn-ghost">See our work</Link>
@@ -46,7 +56,7 @@ export default function Home() {
             <div className="scene">
               {heroBack && <figure className="shot back"><Img s={heroBack} sizes="(min-width: 960px) 46rem, 82vw" /></figure>}
               {heroFront && <figure className="shot front"><Img s={heroFront} sizes="(min-width: 960px) 46rem, 82vw" eager priority /></figure>}
-              {heroPhone && <figure className="shot phone"><Img s={heroPhone} sizes="12rem" /></figure>}
+              {heroPhone && <div className="hero-phone"><Phone s={heroPhone} sizes="13rem" /></div>}
             </div>
           </div>
         </div>
@@ -54,15 +64,15 @@ export default function Home() {
 
       <section className="section statement" aria-label="What we do">
         <div className="wrap">
-          <p className="statement-text">
-            {STATEMENT.split(' ').map((w, i) => <span key={i} style={{ '--i': i } as CSSProperties}>{w} </span>)}
+          <p className="statement-text" ref={statement}>
+            {STATEMENT.split(' ').map((w, i) => <Fragment key={i}><span style={{ '--i': i } as CSSProperties}>{w}</span> </Fragment>)}
           </p>
           <Facts
             items={[
-              ['Free site walk', 'About an hour, at your place'],
-              ['Fixed price per phase', 'Agreed before work starts'],
-              ['Yours to keep', 'Code, data and accounts from day one'],
-              ['Same engineers', 'From the first site walk to the hundredth improvement'],
+              ['We come to you', 'The work starts on your floor, with your people'],
+              ['We listen first', 'Before we design anything'],
+              ['The same engineers', 'From the first conversation to long after launch'],
+              ['By engagement', 'Each one scoped and quoted once we understand the work'],
             ]}
           />
         </div>
@@ -87,7 +97,7 @@ export default function Home() {
           <div className="stack after-compare">
             <p>
               Then we build in small steps you can see and test, roll it out alongside your team, and stay on to improve it. You deal
-              with the same engineers from the first site walk to the hundredth improvement.
+              with the same engineers from the first conversation to the hundredth improvement.
             </p>
             <Faq items={pickFaqs(1)} />
             <p><Link to="/how-we-work" className="text-link">How we work</Link></p>
@@ -128,12 +138,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="hold-us-to">
+      <section className="section" aria-labelledby="look-after">
         <div className="wrap">
           <div className="section-head">
-            <Heading id="hold-us-to" text="What you can hold us to" />
+            <Heading id="look-after" text="How we look after you" />
+            <p>Good software comes from knowing a business and the people in it. This is what that looks like in practice.</p>
           </div>
-          <Commitments />
+          <Care />
         </div>
       </section>
 
