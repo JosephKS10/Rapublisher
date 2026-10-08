@@ -45,7 +45,7 @@ export const industries: Industry[] = [
     ],
     special: {
       heading: 'Your formulas stay yours',
-      body: "Your formulas are the business. We design systems so the people who need a formula can see it, nobody else can, and every view and change is logged. Production sees what this batch needs without seeing the master formula. Exports are controlled, sign-in uses multi-factor authentication, data is hosted in Australia by default [DECISION], and we sign a confidentiality agreement before we see anything.\n\nWe don't give compliance advice. We make your records easier to keep, find and prove.",
+      body: "Your formulas are the business. We design systems so the people who need a formula can see it, nobody else can, and every view and change is logged. Production sees what this batch needs without seeing the master formula. Exports are controlled, sign-in uses multi-factor authentication, where your data is hosted is agreed with you first, and we sign a confidentiality agreement before we see anything.\n\nWe don't give compliance advice. We make your records easier to keep, find and prove.",
     },
     proof: ['ccsm-mobile-commerce', 'b2b-ordering-cleaning-chemicals'],
     services: ['operations-software', 'integrations'],

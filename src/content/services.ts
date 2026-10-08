@@ -1,4 +1,4 @@
-// Service pages (C4). Page order: H1, lead, signs, what we build, extra sections, how it runs, investment, related work, questions, CTA.
+// Service pages (C4). Page order: H1, lead, signs, what we build, extra sections, how it is scoped, related work, questions, CTA.
 
 export type Section = { heading: string; body?: string; items?: string[] }
 
@@ -13,8 +13,6 @@ export type Service = {
   symptoms: string[]
   examples: string[]
   extra?: Section[]
-  timeline?: string
-  investment?: string
   relatedWork: string[]
   faqs: { q: string; a: string }[]
   moreFaqs?: number[] // answers from the shared bank in site.ts (C10), shown after the page's own
@@ -47,10 +45,7 @@ export const services: Service[] = [
       'Scheduling for production runs, crews or deliveries.',
       "Dashboards built on live data, not last month's export.",
     ],
-    timeline: 'We start with a free site walk, then a fixed-fee Blueprint, then a first build phase of 6 to 12 weeks on the one workflow causing the most double handling.',
-    investment: 'A first phase of operations software typically costs A$30,000 to A$90,000 plus GST. The price is fixed before we start. [DECISION]',
     relatedWork: ['multi-site-operations-platform'],
-    insight: 'custom-software-cost-melbourne',
     faqs: [
       { q: 'Should we buy an ERP instead?', a: "Sometimes. If an off-the-shelf system fits most of how you work, we'll say so and can help connect it. Custom makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day." },
       { q: 'Will it work with Xero or MYOB?', a: 'Yes. Your accounting system stays the source of truth for the books, and we connect to it.' },
@@ -82,14 +77,12 @@ export const services: Service[] = [
       'Alerts when a sync fails, before a customer notices.',
       "[CONFIRM which platforms we've integrated in production, and list only those on the live page.]",
     ],
-    timeline: 'Most integrations between two or three systems take 2 to 8 weeks.',
-    investment: 'An integration typically costs A$8,000 to A$40,000 plus GST [DECISION], plus a Care plan to keep it healthy as platforms change.',
     relatedWork: ['ccsm-mobile-commerce', 'b2b-ordering-cleaning-chemicals'],
     moreFaqs: [10],
     insight: 'real-cost-of-double-handling',
     faqs: [
       { q: 'Why not just use Zapier or Make?', a: "Zapier and Make are great for simple, low-volume tasks, and we'll use them where they fit. Once money, stock or customer accounts depend on a connection, you need error handling, logs and someone accountable when it breaks." },
-      { q: 'What happens when Shopify or Xero change something?', a: 'Platforms update their connections regularly. Monitoring and updates are part of the Care plan.' },
+      { q: 'What happens when Shopify or Xero change something?', a: "Platforms update their connections regularly. Watching for that and keeping up with it is part of how we look after a system once it's live." },
     ],
   },
   {
@@ -121,15 +114,13 @@ export const services: Service[] = [
         items: [
           "AI suggests. People decide anything that affects money, safety or someone's job.",
           'Every automated action is logged and can be reversed.',
-          "Your data isn't used to train public models. [CONFIRM per provider and plan]",
-          'Australian data hosting wherever the provider offers it. [CONFIRM per provider]',
+          'We check how each AI provider handles your data before we use it, and explain it to you in plain English.',
+          'Where your data is processed and stored is agreed with you first.',
           'We test accuracy on your real documents before go-live, and keep measuring after.',
           'You get a plain-English description of each automated decision for your privacy policy, ready for the new rules that start on 10 December 2026.',
         ],
       },
     ],
-    timeline: 'An AI pilot runs for 3 to 6 weeks on one workflow and is measured against how that workflow runs today.',
-    investment: 'An AI pilot typically costs A$10,000 to A$30,000 plus GST [DECISION], plus usage costs paid directly to the AI provider.',
     relatedWork: [],
     moreFaqs: [13, 11],
     faqs: [
@@ -168,8 +159,6 @@ export const services: Service[] = [
         body: 'Big buttons, few steps, works offline where reception drops out, and runs on the phones people already carry. Location features come with clear notice and consent, because tracking where people are raises legal questions in Victoria. [CONFIRM with a lawyer before promoting location features]',
       },
     ],
-    timeline: 'A first version of a field or floor app takes 4 to 10 weeks.',
-    investment: 'A first version typically costs A$15,000 to A$60,000 plus GST. [DECISION]',
     relatedWork: ['super-pro-services', 'multi-site-operations-platform', 'calpinemate-employee-app'],
     moreFaqs: [9],
     faqs: [
@@ -183,7 +172,7 @@ export const services: Service[] = [
     summary: 'Taking over stalled projects and making AI-built tools safe to rely on.',
     metaTitle: 'Software rescue and AI-built app checks | RaPublisher',
     metaDescription:
-      'Stalled project, vanished developer, or an AI-built tool your business now relies on? A fixed-fee check, a plain-English report and a fix.',
+      'Stalled project, vanished developer, or an AI-built tool your business now relies on? A careful check, a plain-English report and a fix.',
     h1: 'Rescue for stalled projects and AI-built tools',
     lead: "If a developer went quiet, a project stalled, or a tool someone built with AI has become critical, we'll check it, tell you straight what it needs, and fix it or rebuild it.",
     symptoms: [
@@ -197,10 +186,10 @@ export const services: Service[] = [
     extra: [
       {
         heading: 'The rescue check',
-        body: 'Fixed fee, from A$2,500 plus GST. [DECISION]',
+        body: 'A rescue check is where we start: a careful look at what you have, before anyone promises anything.',
         items: [
           'We look at: who has access; where the data lives; exposed passwords and keys; backups, and whether they actually restore; security basics; code quality and outdated components; and whether you really own the accounts, code and domain.',
-          'You get: a plain-English report, a ranked list of risks, a recommendation to fix or rebuild, and a fixed quote for the work.',
+          'You get: a plain-English report, a ranked list of risks, and a recommendation to fix or rebuild.',
         ],
       },
       {
@@ -215,7 +204,7 @@ export const services: Service[] = [
       { q: 'Can you work with our original developer?', a: 'Yes, and a proper handover helps everyone.' },
       { q: "What if we don't have the code?", a: "We can often rebuild from the live system, your data and your team's knowledge. Our engineers have rebuilt an online store that way. [CONFIRM it launched]" },
     ],
-    cta: 'Book a rescue check',
+    cta: 'Ask about a rescue check',
   },
   {
     slug: 'run-and-improve',
@@ -231,29 +220,25 @@ export const services: Service[] = [
     extra: [
       {
         heading: 'Support after launch',
-        body: "Support after go-live is set out in your contract: fixes to anything we built that doesn't work as agreed, answers to questions, and small adjustments.",
+        body: "Support after go-live is set out in your agreement: fixes to anything we built that doesn't work as agreed, answers to questions, and small adjustments.",
       },
       {
-        heading: 'Then choose a plan [DECISION on prices]',
-        items: [
-          'Care, from A$450 monthly plus GST: hosting management, monitoring and alerts, tested backups, security updates, upgrades, fixes, and a reply within one business day. No development hours included.',
-          'Care and improve, from about A$2,500 monthly plus GST: everything in Care, plus engineer days each month for improvements from your list, and a quarterly visit on site.',
-        ],
+        heading: 'Care that fits the system',
+        body: 'Some systems need watching, backups and security updates. Others need an engineer improving them every month. We agree the right level of care with you, and it goes into your agreement.',
       },
       {
         heading: 'When something breaks',
-        body: 'We reply within one business day [CONFIRM], and anything stopping work goes to the front of the queue. [TODO: define the urgent response time we can actually keep]',
+        body: 'Anything that stops work comes first. How we respond, and how quickly, is agreed with you up front, so you always know where you stand.',
       },
       {
-        heading: 'Your exit is always open',
-        body: 'You own the code, data and accounts. If you ever want to move on, we hand over properly: code, credentials, documentation and a walkthrough.',
+        heading: 'If you ever move on',
+        body: 'How a handover works is set out in your agreement: code, credentials, documentation and a walkthrough, so the next team can pick it up.',
       },
       { heading: "Systems we didn't build", body: 'We can look after those too, after a rescue check.' },
     ],
     relatedWork: [],
     moreFaqs: [19, 8, 7],
     faqs: [],
-    cta: 'Talk to us',
   },
 ]
 

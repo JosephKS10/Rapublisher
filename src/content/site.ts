@@ -8,7 +8,6 @@ export const site = {
   descriptor: 'Forward deployed software engineering, Melbourne.',
   email: 'hello@rapublisher.com.au', // [DECISION] shared inbox, must exist before launch
   phone: '[TODO: 03 phone]',
-  hours: 'Monday to Friday, 8.30am to 5.30pm, Melbourne time. [CONFIRM]',
   area: 'Site walks across metro Melbourne. Regional Victoria by arrangement.',
   legal: 'RA PUBLISHER PTY LTD. ACN 643 002 279. ABN [TODO].',
   copyright: '© 2026 RA PUBLISHER PTY LTD.',
@@ -46,31 +45,32 @@ export const problems = [
   "Someone built a clever tool with AI, the business now depends on it, and nobody's sure how it works.",
 ]
 
-export const commitments = [
-  'A fixed price for each phase, agreed before work starts.',
-  'You own the code, the data and the accounts it runs on, from day one.',
-  'Your system is hosted in Australia unless you ask otherwise. [DECISION]',
-  'Support after launch, as set out in your contract.',
-  'A working demo every week, on site or on screen.',
-  "If an off-the-shelf product will do the job, we'll tell you.",
-  'A reply within one business day. [CONFIRM]',
+// How we look after clients (Home). These describe how we work. They are not contractual promises: terms, prices and
+// response times live in each client's proposal and agreement, never on the site.
+export const care = [
+  "We get to know the people who'll use the system, not only the person who signs off on it.",
+  "We speak plainly. If we can't explain something simply, we don't understand it well enough yet.",
+  "We tell you when you don't need us, or when something off the shelf will do the job.",
+  'We train your team where they work, at times that suit their shifts.',
+  'We plan changes around your busy periods, and run old and new side by side where it matters.',
+  'We stay. The engineers who built your system are the ones who look after it.',
 ]
 
 export const processSteps = [
   {
     title: 'Site walk',
-    meta: 'Free. About an hour.',
-    body: "We walk the floor with you, follow one order or job from start to finish, and talk to the people who'd use the system. Within three business days you get a one-page note: what we saw, a few things you can fix without us, and whether a Blueprint is worth doing. [CONFIRM timing]",
+    meta: 'By arrangement, at your place.',
+    body: "It starts with a conversation. If we look like the right fit for each other, we come to you: we walk the floor, follow one order or job from start to finish, and talk to the people who'd use the system. Then we tell you plainly what we saw and whether we can help.",
   },
   {
     title: 'Blueprint',
-    meta: 'Fixed fee. Two to three weeks.',
-    body: "We spend one to three days on site, then map how the work flows now and how it could flow. You get a clickable prototype of the key screens, a map of your data and systems, the off-the-shelf options we considered, and a plan split into phases, each with a fixed price. It's yours whether or not you build with us, and the fee comes off your first phase if you go ahead within 60 days.",
+    meta: 'Discovery and design.',
+    body: 'We spend time on site, then map how the work flows now and how it could flow. You get a clickable prototype of the key screens, a map of your data and systems, the off-the-shelf options we considered, and a plan split into phases. From it we prepare your proposal: the scope, the timing and the cost.',
   },
   {
     title: 'Build',
-    meta: 'Fixed price per phase. A demo every week.',
-    body: "We build in small pieces and show you working software every week, on site or on screen, using your real data. The people who'll use it try it early, so surprises turn up while they're cheap to fix.",
+    meta: 'In phases, in the open.',
+    body: "We build in small pieces and show you working software as we go, on site or on screen, using your real data. The people who'll use it try it early, so surprises turn up while they're easy to fix.",
   },
   {
     title: 'Rollout',
@@ -79,36 +79,17 @@ export const processSteps = [
   },
   {
     title: 'Run and improve',
-    meta: 'Support as set out in your contract.',
-    body: "After launch we host, monitor and back up your system, fix what needs fixing, and keep improving it from your list. Once a quarter we come back on site to see how it's going.",
+    meta: 'Support as set out in your agreement.',
+    body: "After launch we look after your system and keep improving it from your list. We come back on site to see how it's going, because the work keeps changing and the software should keep up.",
   },
 ]
 
-// Pricing ladder (C8). All figures [DECISION] until the founders confirm them.
+// How an engagement comes together (Pricing page). No prices are published: every engagement is quoted by proposal.
 export const ladder = [
-  { step: 'Site walk', price: 'Free', gets: 'An hour on site and a one-page note within three business days' },
-  {
-    step: 'Blueprint',
-    price: 'A$3,500 to A$7,500 plus GST, depending on size',
-    gets: 'Process maps, prototype, data map, phased plan with fixed prices. Credited against your first phase if you go ahead within 60 days.',
-  },
-  {
-    step: 'Build',
-    price: 'Fixed price per phase. First phases typically A$30,000 to A$90,000 plus GST',
-    gets: 'Working software, documentation, on-site training and go-live support',
-  },
-  {
-    step: 'Run and improve',
-    price: 'Support as set out in your contract, then Care from A$450 monthly or Care and improve from about A$2,500 monthly, plus GST',
-    gets: 'Hosting, monitoring, backups, security updates, fixes and ongoing improvement',
-  },
-]
-
-export const typicalRanges = [
-  { work: 'An integration between two or three systems', range: 'A$8,000 to A$40,000', time: '2 to 8 weeks' },
-  { work: 'An AI pilot on one workflow', range: 'A$10,000 to A$30,000', time: '3 to 6 weeks' },
-  { work: 'A field or floor app, first version', range: 'A$15,000 to A$60,000', time: '4 to 10 weeks' },
-  { work: 'Operations software, first phase', range: 'A$30,000 to A$90,000', time: '6 to 12 weeks' },
+  { step: 'A conversation', gets: "You tell us about your business and what's getting in the way. We'll be straight with you about whether we're the right people to help." },
+  { step: 'A site walk', gets: 'If we are, we come to you and see the work first-hand, alongside the people who do it.' },
+  { step: 'A proposal', gets: 'You get the scope, the timing and the price in writing, shaped around your business and not a rate card.' },
+  { step: 'The engagement', gets: 'Design, build, rollout and care after launch, with the same engineers from start to finish.' },
 ]
 
 export type TeamMember = { name: string; role: string; bio: string; photo?: string; linkedin?: string; onSiteFocus: string }
@@ -130,31 +111,31 @@ export const team: TeamMember[] = [
 
 export const beliefs = [
   { title: 'Turn up.', body: 'The real requirements are found on the floor, not in a meeting room.' },
+  { title: 'Listen first.', body: "The people doing the work usually know what's wrong. We ask them." },
   { title: 'Say it plainly.', body: "If we can't explain it simply, we don't understand it well enough yet." },
-  { title: 'Fix the price.', body: 'Every phase is priced before we start.' },
-  { title: 'Leave you in control.', body: 'Your code, your data, your accounts.' },
+  { title: 'Do less, properly.', body: "We'd rather take on a few engagements and give each one our full attention." },
   { title: 'Stay.', body: 'Launch is the start of the job, not the end.' },
 ]
 
 // FAQ bank (C10). Pages pick questions by their number in this list.
 export const faqs = [
   { q: 'What is a forward deployed engineer?', a: 'A forward deployed engineer is a software engineer who works inside your operation to learn how the work really flows, then designs, builds, launches and looks after the software that fixes it. At RaPublisher you deal with the same engineers from the first site walk to the hundredth improvement.' },
-  { q: 'Do you really come on site?', a: 'Yes. The site walk, the Blueprint days, rollout and quarterly reviews happen at your premises. Weekly demos can be on site or on screen, whichever suits you.' },
+  { q: 'Do you really come on site?', a: 'Yes. The site walk, the discovery days, rollout and our visits after launch happen at your premises. Demos during the build can be on site or on screen, whichever suits you.' },
   { q: 'Who actually writes the code?', a: "RaPublisher's engineers, Ramin Shirzad and Joseph Saji, live in Melbourne. They come on site, design your system, build it and look after it. If a larger build ever needs extra hands, we'll tell you who and where first." },
-  { q: 'How much does custom software cost?', a: 'Most first phases fall between A$30,000 and A$90,000 plus GST. Integrations and pilots can cost less. Every phase gets a fixed price after the Blueprint.' },
-  { q: 'Why do you charge for the Blueprint?', a: "It's real work: days on site, process maps, a prototype and a costed plan. You own it either way, and the fee comes off your first phase if you go ahead within 60 days." },
-  { q: 'What if the project goes over budget?', a: 'Each phase has a fixed price. If you ask for something new partway through, we price the change and you decide before we do it.' },
-  { q: 'Who owns the software?', a: 'You do. With RaPublisher you own the code, the data and the accounts the system runs on, from day one. It runs on mainstream technology with documentation, so any competent developer could pick it up. If you ever want to move on, we hand over properly: code, credentials, documentation and a walkthrough.' },
-  { q: "What happens if you're not around?", a: "Your system runs on mainstream technology, in accounts you own, with documentation. Any competent developer could pick it up, and we'd hand over properly." },
+  { q: 'How much does custom software cost?', a: "It depends on what's being built, how many systems it connects, and how many people and sites it serves, which is why we don't publish a price list. After a conversation and a site walk, you get a written proposal with the scope and the price." },
+  { q: 'Why do you charge for the Blueprint?', a: "Because it's real work: time on site, process maps, a prototype and a plan. It's also where most of the thinking happens, so it's worth doing properly." },
+  { q: 'What if the project goes over budget?', a: 'Your proposal sets out the scope and the price of each phase before it starts. If you want something new partway through, we talk it through and agree the change with you before we do it.' },
+  { q: 'Who owns the software?', a: "That's set out plainly in your agreement. We build on mainstream technology and document what we build, so another competent developer could pick it up." },
+  { q: "What happens if you're not around?", a: 'We build on mainstream technology and document what we build, so a competent developer could pick it up. How a handover works is set out in your agreement.' },
   { q: "Can't we just buy something off the shelf?", a: "Often you can, and we'll tell you at the site walk. If an off-the-shelf product fits most of how you work, we'll say so and can help connect it. Custom software makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day. We build only what off-the-shelf can't do, and connect the rest." },
   { q: 'Which systems do you work with?', a: 'Commonly Xero, MYOB, Shopify, WooCommerce and Zoho, plus most systems that offer an API or a data export. [CONFIRM list]' },
-  { q: 'Where is our data stored?', a: "In Australian hosting regions by default, unless you ask otherwise. Where a provider can't host in Australia, we tell you before we use it. [DECISION]" },
-  { q: 'How do you protect formulas and sensitive data?', a: 'Access by role, multi-factor sign-in, a log of every view and change, controlled exports, Australian hosting, and confidentiality agreements before we see anything.' },
+  { q: 'Where is our data stored?', a: "Where your system and your data are hosted is agreed with you before anything is built, and written into your agreement. We'll explain the options in plain English." },
+  { q: 'How do you protect formulas and sensitive data?', a: 'Access by role, multi-factor sign-in, a log of every view and change, controlled exports, and confidentiality agreements before we see anything.' },
   { q: 'How do you use AI, and is it safe?', a: "Where it saves time on routine work. People approve anything that affects money, safety or someone's job, every action is logged, and we document each automated decision for your privacy policy." },
-  { q: 'We built something with an AI app builder. Can you help?', a: 'Yes. A rescue check is a fixed-fee review of an existing system, a stalled project or an AI-built tool. We check who has access, where the data lives, exposed passwords and keys, backups, and who owns the accounts and code. You get a plain-English report, a ranked list of risks, a recommendation to fix or rebuild, and a fixed quote for the work.' },
-  { q: 'How long does it take?', a: 'Site walks usually happen within a week or two. A Blueprint takes two to three weeks, and a first phase 6 to 16 weeks. [CONFIRM]' },
+  { q: 'We built something with an AI app builder. Can you help?', a: 'Yes. A rescue check is a careful review of an existing system, a stalled project or an AI-built tool. We check who has access, where the data lives, exposed passwords and keys, backups, and who owns the accounts and code. You get a plain-English report, a ranked list of risks, and a recommendation to fix or rebuild.' },
+  { q: 'How long does it take?', a: "It depends on the size of the work, so your proposal sets out the timing of each phase. We'd rather give you a real answer after seeing the work than a guess before." },
   { q: 'What areas do you cover?', a: 'Metro Melbourne for site walks, and regional Victoria by arrangement. Interstate projects case by case. [DECISION]' },
-  { q: 'Are we too small for this?', a: "If two or three people retype or reconcile the same information every day, it's usually worth an hour to check. Try the calculator." },
+  { q: 'Are we too small for this?', a: "If two or three people retype or reconcile the same information every day, it's usually worth a conversation. Try the calculator." },
   { q: 'Are you insured?', a: '[TODO: types of cover, then "Certificates are available on request before the first visit."]' },
   { q: 'Can you take over a system someone else built?', a: 'Yes, after a rescue check, so we both know what we\'re taking on.' },
 ]

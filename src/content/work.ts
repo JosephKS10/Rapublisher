@@ -2,7 +2,8 @@
 // Render rules (A3): outcomes only when verified, testimonials only with permission, client names only with clientNamePermission.
 
 // A processed screenshot from scripts/images.js: `src` is the large WebP, `small` the narrow one.
-export type Shot = { src: string; small?: string; alt: string; w: number; h: number; mobile?: boolean; caption?: string }
+// `focus` is the part to keep in view (a CSS object-position) where a frame is a different shape from the screenshot.
+export type Shot = { src: string; small?: string; alt: string; w: number; h: number; mobile?: boolean; caption?: string; focus?: string }
 
 const shot = (base: string, alt: string, w: number, h: number, small: number, mobile = false): Shot => ({
   src: `/work/${base}-${w}.webp`,
@@ -39,6 +40,7 @@ export type Work = {
   testimonialTodo?: string
   stack: string[]
   images: Shot[]
+  phone?: 'silver' // colour of the phone its mobile screens sit in; orange when left out
   featured: boolean
   draft: boolean
   note?: string
@@ -143,7 +145,7 @@ export const work: Work[] = [
     testimonialTodo: '[TODO: fresh quote from the client, with written permission]',
     stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Progressive web app'],
     images: [
-      shot('multi-site-operations-platform/calendar', 'Operations platform calendar of stock orders; customer details blurred', 1800, 884, 960),
+      { ...shot('multi-site-operations-platform/calendar', 'Operations platform calendar of stock orders; customer details blurred', 1800, 884, 960), focus: 'left top' },
       shot('multi-site-operations-platform/orders', 'Operations platform order dashboard; customer details blurred', 1800, 885, 960),
       shot('multi-site-operations-platform/sites', 'Operations platform site list; client and site details blurred', 1800, 884, 960),
       shot('multi-site-operations-platform/stock-order', 'Stock ordering screen a cleaner uses on their phone', 391, 845, 391, true),
@@ -154,6 +156,7 @@ export const work: Work[] = [
   },
   {
     slug: 'calpinemate-employee-app',
+    phone: 'silver',
     metaDescription: 'CalpineMate: an employee portal rebuilt as an iOS and Android app with biometric sign-in, live leave balances and push notifications.',
     title: 'Taking an employee portal from the desk to the phone',
     metaTitle: 'CalpineMate employee app | RaPublisher',

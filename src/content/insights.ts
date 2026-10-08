@@ -42,7 +42,7 @@ export const insights: Insight[] = [
       { h: 'How this differs from adding an engineer to a software team' },
       { p: 'Some firms use the same term for placing an engineer inside a client\'s existing engineering team. That suits companies that already have developers. Ours is a different job: we embed in your operation, not your engineering team. If you have no developers, we become your engineering team, and we build the whole system, not only the AI part.' },
       { h: 'When it is not the right fit' },
-      { ul: ['Large enterprise programs with their own delivery teams.', 'Consumer app startups.', 'Buyers who want a fixed quote from a one-line brief at the lowest price.'] },
+      { ul: ['Large enterprise programs with their own delivery teams.', 'Consumer app startups.', 'Buyers who want a quote from a one-line brief at the lowest price.'] },
       { p: 'It is also fair to say that the role involves plenty of plumbing: integration work, conversations and time on site, not only product engineering. For a business with no technical staff, that is the point. Someone has to do the plumbing, the conversations and the building.' },
     ],
     sources: [
@@ -110,7 +110,7 @@ export const insights: Insight[] = [
       { to: '/services/operations-software', label: 'Operations software: what a first phase covers' },
       { to: '/work/super-pro-services', label: 'Case study: a public website and a workforce portal in one system' },
     ],
-    draft: false,
+    draft: true, // pulled 8 October 2026: the site no longer publishes prices
   },
   {
     slug: 'real-cost-of-double-handling',
