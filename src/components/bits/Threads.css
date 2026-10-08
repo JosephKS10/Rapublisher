@@ -1,8 +1,0 @@
-/* React Bits component styles, layered below the site theme (src/styles/tokens.css) */
-@layer vendor {
-.threads-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-}

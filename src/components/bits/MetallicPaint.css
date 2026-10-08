@@ -1,9 +1,0 @@
-/* React Bits component styles, layered below the site theme (src/styles/tokens.css) */
-@layer vendor {
-.paint-container {
-  display: block;
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-}
-}
