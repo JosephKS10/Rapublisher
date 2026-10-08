@@ -2,8 +2,8 @@
 
 /* Graphite and platinum: the `raycast` design-system package (near-black with a faint blue tint, near-white text,
    depth from layered highlights and shadows). Monochrome on purpose: the only colour on a page is the client work.
-   To tint the site, change --accent and its channel twin --a together; everything follows, including the WebGL
-   effects (components/palette.ts). */
+   Platinum is the interface colour (text, buttons). Neon is light: glows, hairlines, hover and state. Each service
+   and industry owns one neon (components/Iso.tsx), and --spectrum runs through all of them. */
 @layer tokens {
   :root {
     color-scheme: dark;
@@ -22,10 +22,23 @@
     --danger: #ff6161;
     --field: color-mix(in oklab, var(--muted), var(--bg) 30%); /* input outlines, 3.8:1 on surface */
 
+    --n-violet: #a98bff;
+    --n-pink: #ff4fd8;
+    --n-cyan: #3de8ff;
+    --n-lime: #b9ff4f;
+    --n-orange: #ff9a3d;
+    --n-rose: #ff5d7a;
+    --neon: var(--n-violet); /* the neon in force here; cards and pages set their own */
+    --spectrum: linear-gradient(90deg, var(--n-cyan), var(--n-violet) 34%, var(--n-pink) 67%, var(--n-orange));
+
     /* Channel twins of --accent, --fg and --surface, for alpha tints */
     --a: 249 249 249;
     --f: 249 249 249;
     --s: 16 17 17;
+    /* Shadows are written as rgb(var(--shade) / calc(alpha * var(--shade-k))), so a theme can retint and soften them */
+    --shade: 0 0 0;
+    --shade-k: 1;
+    --unlit: 0.38; /* opacity of a statement word before it lights up: 3.4:1 on bg */
 
     /* Surfaces are plates: lit from above, a hairline highlight on the top edge, a deep soft shadow below */
     --plate: linear-gradient(180deg, color-mix(in oklab, var(--surface), var(--fg) 3%), color-mix(in oklab, var(--surface), var(--bg) 60%));
@@ -58,5 +71,42 @@
     --gap: clamp(1rem, 2vw, 1.5rem);
     --section: clamp(4.5rem, 9vw, 8rem);
     --header-h: 4.25rem;
+  }
+
+  /* Light: the same system on platinum paper. Graphite does the interface work that platinum does in the dark,
+     and each neon deepens until it holds 4.5:1 as text on the page. Dark is the default (components/theme.ts). */
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --bg: #f1f2f4;
+    --surface: #fbfbfc;
+    --fg: #0b0c0f;
+    --fg-2: #30333a; /* 11.3:1 on bg */
+    --muted: #5a5f69; /* 5.7:1 on bg */
+    --accent: #0b0c0f;
+    --accent-on: #f9f9f9;
+    --accent-hi: color-mix(in oklab, var(--accent), white 24%);
+    --danger: #c8243a;
+    --field: #7b808a;
+    --n-violet: #6a45f5;
+    --n-pink: #c2179a;
+    --n-cyan: #00758f;
+    --n-lime: #3b7600;
+    --n-orange: #b04e00;
+    --n-rose: #cf1f4c;
+    /* Brighter twins for large fills that carry no text (the wave backgrounds). Dark needs none: its neons are bright. */
+    --nf-violet: #8468ff;
+    --nf-pink: #f246c8;
+    --nf-cyan: #18b9da;
+    --nf-lime: #86cc1c;
+    --nf-orange: #ff8b2c;
+    --nf-rose: #f6506f;
+    --a: 11 12 15;
+    --f: 11 12 15;
+    --s: 251 251 252;
+    --shade: 22 26 44;
+    --shade-k: 0.2;
+    --unlit: 0.46; /* 3.1:1 on bg */
+    --plate: linear-gradient(180deg, var(--surface), color-mix(in oklab, var(--surface), var(--bg) 55%));
+    --plate-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9), 0 1px 2px rgb(var(--shade) / 0.06), 0 28px 56px -32px rgb(var(--shade) / 0.28);
   }
 }
