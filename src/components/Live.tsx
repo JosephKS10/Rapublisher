@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type ComponentType, type ReactNode } from 
 // HTML, LCP and no-JS visitors all get a finished frame; the live layer fades in over it.
 // Creating a WebGL context is slow on phones, so test once, and only when a layer is about to mount.
 let webgl: boolean | undefined
+const hasWebGPU = () => 'gpu' in navigator
 const hasWebGL = () => {
   if (webgl === undefined) {
     try {
@@ -22,11 +23,13 @@ export function Live<P extends object>({
   props,
   poster,
   className = '',
+  gpu,
 }: {
   load: () => Promise<{ default: ComponentType<P> }>
   props: P
   poster?: ReactNode
   className?: string
+  gpu?: boolean // the layer draws with WebGPU; without it the poster stays
 }) {
   const [Comp, setComp] = useState<ComponentType<P> | null>(null)
   const el = useRef<HTMLDivElement>(null)
@@ -38,7 +41,7 @@ export function Live<P extends object>({
     let alive = true
     let id = 0
     const idle = 'requestIdleCallback' in window
-    const go = () => hasWebGL() && load().then((m) => alive && setComp(() => m.default))
+    const go = () => (gpu ? hasWebGPU() : hasWebGL()) && load().then((m) => alive && setComp(() => m.default))
     // Wait until the layer is within a screen of the viewport, so effects far down the page cost nothing at load.
     const io = new IntersectionObserver(
       ([entry]) => {

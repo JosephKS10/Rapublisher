@@ -1,3 +1,6 @@
+import type { CSSProperties } from 'react'
+import type { Neon, Tone } from './palette'
+
 // Isometric hairline figures, one per service and industry. Each is a list of boxes [x, y, z, w, d, h] in grid units
 // (x runs down-right, y down-left, z up). Boxes are drawn far to near, with solid faces, so nearer boxes cover the
 // lines behind them.
@@ -23,6 +26,26 @@ const FIGURES: Record<string, Box[]> = {
   // Separate buildings, one team
   'multi-site-services': [[0, 0, 0, 1.4, 1.4, 2.4], [2.4, 0.3, 0, 1.6, 1.2, 1.2], [0.6, 2.6, 0, 1.2, 1.6, 1.6], [4.8, 1.2, 0, 1, 1, 0.8], [3, 2.6, 0, 1.4, 1.4, 3]],
 }
+
+// The neon each service and industry owns, wherever it appears: its card, its figure, its page head.
+const NEON: Record<string, Neon> = {
+  'operations-software': 'violet',
+  integrations: 'cyan',
+  'ai-in-operations': 'pink',
+  'field-and-floor-apps': 'lime',
+  rescue: 'orange',
+  'run-and-improve': 'rose',
+  manufacturing: 'orange',
+  'wholesale-distribution': 'cyan',
+  'multi-site-services': 'lime',
+}
+// A page head's waves for a service or industry: its own neon, between its two neighbours on the colour ring.
+const RING: Neon[] = ['cyan', 'violet', 'pink', 'rose', 'orange', 'lime']
+export const toneOf = (name: string): Tone => {
+  const i = RING.indexOf(NEON[name] ?? 'violet')
+  return [RING[(i + 5) % 6], RING[i], RING[(i + 1) % 6]]
+}
+export const neonOf = (name: string) => ({ '--neon': `var(--n-${NEON[name] ?? 'violet'})` }) as CSSProperties
 
 const C = Math.cos(Math.PI / 6)
 const pt = (x: number, y: number, z: number): [number, number] => [(x - y) * C, (x + y) / 2 - z]

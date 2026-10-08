@@ -1,41 +1,38 @@
-import { Fragment, useState, type CSSProperties } from 'react'
+import { Fragment, useState, type CSSProperties, type PointerEvent } from 'react'
 import { Link } from 'react-router'
 import { ArrowRightIcon, CheckIcon } from '@phosphor-icons/react'
 import { industries } from '../content/industries'
 import { getService } from '../content/services'
-import { commitments, ladder, problems, team } from '../content/site'
+import { care, ladder, problems, team } from '../content/site'
 import { clientLabel, getWork, verifiedOutcomes, type Shot, type Work } from '../content/work'
-import { Iso } from './Iso'
+import { Iso, neonOf } from './Iso'
 import { Live } from './Live'
 import { Mark } from './Logo'
-import { accent } from './palette'
-import { BookButton, filled, hasPhone, PhoneLink, Rich, slug, TitleBlock, type Field } from './ui'
+import { neon, token } from './palette'
+import { useTheme } from './theme'
+import { BookButton, filled, Rich, slug, TitleBlock, type Field } from './ui'
 
 
 export function CtaBand() {
-  const { hex } = accent()
+  const light = useTheme() === 'light' // also re-renders this on a theme change, so the colours below are re-read
   return (
     <section className="cta-band" aria-labelledby="cta-title">
+      {/* React Bits ShapeWaves (WebGPU): a field of shapes that swell along rolling waves and light up under the pointer */}
       <Live
-        className="cta-rays"
-        load={() => import('./bits/LightRays')}
-        props={{ raysOrigin: 'top-center', raysColor: hex, raysSpeed: 0.7, lightSpread: 0.9, rayLength: 1.3, followMouse: true, mouseInfluence: 0.06, noiseAmount: 0.06, distortion: 0.03 }}
+        gpu
+        className="cta-waves"
+        load={() => import('./bits/ShapeWaves')}
+        props={{ color: light ? '#5a5f69' : '#8f9399', hoverColor: neon('pink', true), backgroundColor: token('--bg', '#07080a'), cellSize: 14, dotSize: 0.7, speed: 0.6, brightness: light ? 0.5 : 0.34, contrast: 1.1, fade: 0.3, glow: 0.5, splashRadius: 60, splashStrength: 0.5 }}
+        poster={<span />}
       />
       <div className="wrap">
         <div data-reveal>
           <h2 id="cta-title">Tell us what would make your working day easier.</h2>
-          <p>Book a free site walk. An engineer comes to you, sees how the work flows and tells you straight whether we can help.</p>
+          <p>Our engineers do the work themselves, so we take on only a few engagements at a time. Tell us about your business, and if we're the right people to help, we'll come and see the work for ourselves.</p>
           <div className="actions">
             <BookButton />
-            {hasPhone && <span>Or call <PhoneLink /></span>}
           </div>
         </div>
-        <Live
-          className="cta-metal"
-          load={() => import('./bits/MetallicPaint')}
-          props={{ imageSrc: '/mark-metal.svg', lightColor: '#ffffff', darkColor: '#07080a', tintColor: hex, speed: 0.25, liquid: 0.8, brightness: 1.7, chromaticSpread: 1 }}
-          poster={<Mark />}
-        />
       </div>
     </section>
   )
@@ -57,13 +54,23 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
 // Six services in a bento grid; operations software and field apps take the two large cells.
 const BENTO_ORDER = ['integrations', 'ai-in-operations', 'operations-software', 'field-and-floor-apps', 'rescue', 'run-and-improve']
 
+// The glow follows the pointer: each card gets the pointer's position in its own coordinates, so the card under it
+// lights up and its neighbours catch the edge of the light.
+const followPointer = (e: PointerEvent<HTMLElement>) => {
+  for (const card of e.currentTarget.children as HTMLCollectionOf<HTMLElement>) {
+    const r = card.getBoundingClientRect()
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`)
+    card.style.setProperty('--my', `${e.clientY - r.top}px`)
+  }
+}
+
 export function ServiceBento() {
   return (
-    <div className="bento" data-reveal>
+    <div className="bento glow-group" data-reveal onPointerMove={followPointer}>
       {BENTO_ORDER.map(getService).filter((s) => !!s).map((s) => {
         const big = s.slug === 'operations-software' || s.slug === 'field-and-floor-apps'
         return (
-          <article key={s.slug} className="bento-card">
+          <article key={s.slug} className="bento-card glow-card" style={neonOf(s.slug)}>
             <div className={`svc${big ? ' big' : ''}`}>
               <Iso name={s.slug} className="svc-fig" />
               <div>
@@ -81,10 +88,10 @@ export function ServiceBento() {
 
 export function IndustryPanels() {
   return (
-    <div className="acc" data-reveal>
+    <div className="acc glow-group" data-reveal onPointerMove={followPointer}>
       {industries.map((ind) => {
         return (
-          <Link key={ind.slug} to={`/industries/${ind.slug}`}>
+          <Link key={ind.slug} to={`/industries/${ind.slug}`} className="glow-card" style={neonOf(ind.slug)}>
             <Iso name={ind.slug} className="acc-fig" />
             <h3>{ind.title}</h3>
             <div className="stack">
@@ -124,12 +131,45 @@ export const Img = ({ s, sizes = '(min-width: 960px) 40vw, 90vw', eager, priorit
   />
 )
 
+// A phone screenshot in an iPhone 17 Pro style body: orange unless the project asks for another colour (`tone`). The screen is a fixed shape with a white ground, so a short
+// screenshot sits at the top and the rest of the screen stays white.
+export const Phone = ({ s, sizes = '14rem', eager, priority, tone }: { s: Shot; sizes?: string; eager?: boolean; priority?: boolean; tone?: Work['phone'] }) => (
+  <div className="iphone" data-tone={tone}>
+    <div className="iphone-body">
+      <div className="iphone-screen"><Img s={{ ...s, alt: '' }} sizes={sizes} eager={eager} priority={priority} /></div>
+    </div>
+  </div>
+)
+
+// A desktop screenshot filling an iPad's screen. The screenshot is wider than the screen, so it is scaled to the
+// screen's height and the sides are trimmed (never stretched); `focus` on the shot says which part to keep.
+export const Tablet = ({ s, sizes = '(min-width: 960px) 58rem, 115vw' }: { s: Shot; sizes?: string }) => (
+  <div className="ipad">
+    <div className="ipad-body">
+      <div className="ipad-screen" style={s.focus ? ({ '--focus': s.focus } as CSSProperties) : undefined}>
+        <Img s={{ ...s, alt: '' }} sizes={sizes} />
+      </div>
+    </div>
+  </div>
+)
+
+// A project on its devices: an iPad for a desktop system, three phones for a mobile app.
+export function DeviceStage({ w, active = true }: { w: Work; active?: boolean }) {
+  const mobile = !!w.images[0]?.mobile
+  const shots = mobile ? w.images.filter((s) => s.mobile).slice(0, 3) : w.images.slice(0, 1)
+  return (
+    <div className={`work-view ${mobile ? 'mob' : 'desk'}`} data-active={active || undefined}>
+      {shots.map((s) => (mobile ? <Phone key={s.src} s={s} tone={w.phone} /> : <Tablet key={s.src} s={s} />))}
+    </div>
+  )
+}
+
 // Real screens as the cover: one desktop shot, or three phone screens side by side.
 function Cover({ w }: { w: Work }) {
   const first = w.images[0]
-  if (!first) return <div className="case-cover"><Mark className="svc-art" line /></div>
+  if (!first) return <div className="case-cover" />
   if (first.mobile) {
-    return <div className="case-cover mob">{w.images.filter((i) => i.mobile).slice(0, 3).map((s) => <Img key={s.src} s={s} sizes="15vw" />)}</div>
+    return <div className="case-cover mob">{w.images.filter((i) => i.mobile).slice(0, 3).map((s) => <Phone key={s.src} s={s} sizes="15vw" tone={w.phone} />)}</div>
   }
   return <div className="case-cover"><Img s={first} /></div>
 }
@@ -176,21 +216,14 @@ export function WorkSwap({ items }: { items: Work[] }) {
         ))}
       </ul>
       <div className="work-stage" aria-hidden="true">
-        {items.map((w, i) => {
-          const mobile = !!w.images[0]?.mobile
-          const shots = mobile ? w.images.filter((s) => s.mobile).slice(0, 3) : w.images.slice(0, 1)
-          return (
-            <div key={w.slug} className={`work-view ${mobile ? 'mob' : 'desk'}`} data-active={i === active || undefined}>
-              {shots.map((s) => <div className="bezel" key={s.src}><Img s={{ ...s, alt: '' }} sizes={mobile ? '14rem' : '(min-width: 960px) 46rem, 92vw'} /></div>)}
-            </div>
-          )
-        })}
+        {items.map((w, i) => <DeviceStage key={w.slug} w={w} active={i === active} />)}
       </div>
     </div>
   )
 }
 
-// The four steps as a staircase: each plate stands a little taller than the last. A true sequence, so it is numbered.
+// How an engagement comes together, as a staircase: each plate stands a little taller than the last. A true
+// sequence, so it is numbered. No prices: see content/site.ts.
 export function PricingLadder() {
   return (
     <ol className="rungs" data-reveal>
@@ -198,7 +231,6 @@ export function PricingLadder() {
         <li key={r.step} className="glass" style={{ '--n': i } as CSSProperties}>
           <span className="rung-n" aria-hidden="true">{i + 1}</span>
           <h3>{r.step}</h3>
-          <p className="rung-price"><Rich text={r.price} /></p>
           <p><Rich text={r.gets} /></p>
         </li>
       ))}
@@ -206,10 +238,10 @@ export function PricingLadder() {
   )
 }
 
-export function Commitments() {
+export function Care() {
   return (
     <ul className="clauses" data-reveal>
-      {commitments.map((c) => (
+      {care.map((c) => (
         <li key={c}>
           <div className="clause">
             <CheckIcon weight="bold" aria-hidden="true" />
@@ -254,7 +286,8 @@ export function TeamCards() {
 }
 
 // "Sound familiar?" as a self-check. CSS counts the ticks (counter) and lights the verdict at two
-// (`:has(input:checked ~ input:checked)`), so the inputs stay siblings and no JavaScript is needed.
+// (`:has(input:checked ~ input:checked)`), so the inputs stay siblings and no JavaScript is needed. Each box sits in
+// the same grid cell as its label, invisible but in place: a box parked elsewhere pulls the page to it on focus.
 export function ProblemList() {
   return (
     <div className="self-check grid">
@@ -263,16 +296,21 @@ export function ProblemList() {
         <p className="lead">Tick the ones that sound like your week.</p>
       </div>
       <div className="tiles" role="group" aria-labelledby="sound-familiar">
-        {problems.map((p, i) => (
-          <Fragment key={p}>
-            <input type="checkbox" id={`problem-${i}`} className="sr-only" />
-            <label htmlFor={`problem-${i}`}><span>{p}</span></label>
-          </Fragment>
-        ))}
+        {problems.map((p, i) => {
+          // Box and label share one grid cell (two columns on wide screens, an odd last one spans both)
+          const spans = i === problems.length - 1 && problems.length % 2 === 1
+          const cell = { '--k': i + 1, '--row': Math.floor(i / 2) + 1, '--col': spans ? '1 / -1' : (i % 2) + 1 } as CSSProperties
+          return (
+            <Fragment key={p}>
+              <input type="checkbox" id={`problem-${i}`} style={cell} />
+              <label htmlFor={`problem-${i}`} style={cell}><span>{p}</span></label>
+            </Fragment>
+          )
+        })}
       </div>
       <div className="sc-verdict">
         <p className="hits" aria-hidden="true">of {problems.length} sound like your week</p>
-        <p className="verdict">If two or more of these sound like your week, an hour on site is worth it.</p>
+        <p className="verdict">If two or more of these sound like your week, it's worth a conversation.</p>
         <div><BookButton /></div>
       </div>
     </div>

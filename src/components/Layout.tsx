@@ -1,8 +1,27 @@
 import { useRef, useState } from 'react'
 import { Link, NavLink, Outlet, ScrollRestoration } from 'react-router'
+import { MoonIcon, SunIcon } from '@phosphor-icons/react'
 import { footerLinks, nav, site } from '../content/site'
 import { Brand } from './Logo'
+import { setTheme, useTheme } from './theme'
 import { BookButton, EmailLink, hasPhone, JsonLd, ORG_ID, personId, PhoneLink, Rich, SITE_ID } from './ui'
+
+function ThemeSwitch() {
+  const next = useTheme() === 'light' ? 'dark' : 'light'
+  return (
+    <button
+      type="button"
+      className="btn btn-ghost btn-sm theme-btn"
+      aria-label={`Switch to ${next} mode`}
+      onClick={(e) => {
+        const r = e.currentTarget.getBoundingClientRect()
+        setTheme(next, { x: r.left + r.width / 2, y: r.top + r.height / 2 })
+      }}
+    >
+      {next === 'light' ? <SunIcon aria-hidden="true" /> : <MoonIcon aria-hidden="true" />}
+    </button>
+  )
+}
 
 function Header() {
   const menu = useRef<HTMLDialogElement>(null)
@@ -16,6 +35,7 @@ function Header() {
           <nav className="nav" aria-label="Main">
             {nav.map((n) => <NavLink key={n.to} to={n.to}>{n.label}</NavLink>)}
           </nav>
+          <ThemeSwitch />
           <BookButton className="btn btn-primary btn-sm header-cta" />
           <button className="btn btn-ghost btn-sm menu-btn" aria-haspopup="dialog" aria-expanded={open} onClick={() => { menu.current?.showModal(); setOpen(true) }}>
             Menu
@@ -56,7 +76,6 @@ function Footer() {
             <h2>Contact</h2>
             <p><EmailLink />{hasPhone && <><br /><PhoneLink /></>}</p>
             <p>{site.area}</p>
-            <p><Rich text={site.hours} /></p>
           </div>
           <nav aria-label="Footer">
             <h2>Pages</h2>

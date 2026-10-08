@@ -47,7 +47,7 @@ const SQUARES = [
 // The mark at drawing scale, each square labelled with its step. `active` lights one square (How we work).
 export function ProcessDrawing({ active, animate, caption }: { active?: number; animate?: boolean; caption?: boolean }) {
   return (
-    <figure className={`pd${animate ? ' pd-anim' : ''}`} aria-label="Five steps, each square bigger than the last, starting from a free site walk">
+    <figure className={`pd${animate ? ' pd-anim' : ''}`} aria-label="Five steps, each square bigger than the last, starting from a first conversation">
       <div className="pd-sheet">
         <svg viewBox="0 0 8 5" aria-hidden="true" focusable="false">
           {SQUARES.map((q, i) => (
@@ -73,7 +73,7 @@ export function ProcessDrawing({ active, animate, caption }: { active?: number; 
       {caption && (
         <dl className="pd-caption">
           <div><dt>Drawing</dt><dd>How every engagement grows</dd></div>
-          <div><dt>Start</dt><dd>A free site walk</dd></div>
+          <div><dt>Start</dt><dd>A conversation</dd></div>
           <div><dt>Rule</dt><dd>Each step is useful on its own</dd></div>
         </dl>
       )}

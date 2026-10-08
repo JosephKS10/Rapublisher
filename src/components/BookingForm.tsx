@@ -1,6 +1,6 @@
 import { Fragment, useRef, useState, type FormEvent } from 'react'
 import { Link } from 'react-router'
-import { EmailLink, hasPhone, PhoneLink, track } from './ui'
+import { EmailLink, track } from './ui'
 
 // BookingForm (C9). Posts to Netlify Forms; the static twin in index.html lets Netlify detect the fields at deploy.
 // Three steps styled after React Bits' Stepper, but every field stays in the form (hidden steps are only hidden),
@@ -23,7 +23,6 @@ const opts = {
   team: ['1 to 9', '10 to 49', '50 to 199', '200 or more'],
   industry: ['Manufacturing', 'Wholesale or distribution', 'Cleaning, facilities or field services', 'Other'],
   systems: ['Xero', 'MYOB', 'Shopify', 'WooCommerce', 'Zoho', 'Spreadsheets', 'Something built for us', 'Other'],
-  budget: ['Not sure yet', 'Under A$15,000', 'A$15,000 to A$50,000', 'A$50,000 to A$150,000', 'More than A$150,000'],
 }
 
 const STEPS = ['About you', 'Your business', 'What to fix']
@@ -94,8 +93,8 @@ export function BookingForm() {
       <div className="form-status" role="status" tabIndex={-1} ref={doneRef}>
         <h2>Thanks, {status.first}.</h2>
         <p>
-          We've got your message, and an engineer will reply within one business day to find a time.
-          {hasPhone && <> If it's urgent, call <PhoneLink />.</>}
+          We've got your message, and it has gone straight to our engineers. If we're the right people to help, one of us will be in
+          touch to arrange a conversation.
         </p>
       </div>
     )
@@ -106,7 +105,7 @@ export function BookingForm() {
   const blur = { onBlur: (e: { target: Control }) => errors[e.target.name] !== undefined && check(e.target) }
 
   return (
-    <form ref={formRef} name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={submit} className="stepper glass" aria-label="Book a site walk: three steps (about you, your business, the visit)">
+    <form ref={formRef} name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={submit} className="stepper glass" aria-label="Enquiry: three steps (about you, your business, the visit)">
       <input type="hidden" name="form-name" value={FORM_NAME} />
       <p className="hp" aria-hidden="true">
         <label>Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
@@ -145,7 +144,7 @@ export function BookingForm() {
           <div className="field">
             <label htmlFor="phone">Phone <span className="req">(optional)</span></label>
             <input id="phone" name="phone" type="tel" autoComplete="tel" aria-describedby="phone-hint" />
-            <p className="hint" id="phone-hint">Easier to arrange a visit by phone?</p>
+            <p className="hint" id="phone-hint">Easier to reach you by phone?</p>
           </div>
           <div className="field full">
             <label htmlFor="role">Your role <span className="req">(optional)</span></label>
@@ -179,14 +178,8 @@ export function BookingForm() {
           <div {...field('suburb')}>
             <label htmlFor="suburb">Suburb</label>
             <input id="suburb" name="suburb" autoComplete="address-level2" required aria-describedby="suburb-hint" {...err('suburb')} {...blur} />
-            <p className="hint" id="suburb-hint">So we can plan the visit.</p>
+            <p className="hint" id="suburb-hint">So we know where your business is.</p>
             <Err name="suburb" />
-          </div>
-          <div className="field">
-            <label htmlFor="budget">Budget in mind <span className="req">(optional)</span></label>
-            <select id="budget" name="budget" defaultValue="Not sure yet">
-              {opts.budget.map((o) => <option key={o}>{o}</option>)}
-            </select>
           </div>
           <fieldset className="field full">
             <legend>Systems you use today <span className="req">(optional)</span></legend>
@@ -220,7 +213,7 @@ export function BookingForm() {
             <p className="hint" id="heard-hint">If someone referred you, we'd like to thank them.</p>
           </div>
           <div className="field">
-            <label htmlFor="times">Best days or times for a visit <span className="req">(optional)</span></label>
+            <label htmlFor="times">Best days or times to talk <span className="req">(optional)</span></label>
             <input id="times" name="times" />
           </div>
           <div {...field('consent', 'full')}>
@@ -247,7 +240,7 @@ export function BookingForm() {
           <button type="button" className="btn btn-primary" onClick={next} aria-label={`Next: step ${step + 2} of 3`}>Next</button>
         ) : (
           <button type="submit" className="btn btn-primary" disabled={status.kind === 'sending'}>
-            {status.kind === 'sending' ? 'Sending' : 'Book a site walk'}
+            {status.kind === 'sending' ? 'Sending' : 'Send enquiry'}
           </button>
         )}
       </div>

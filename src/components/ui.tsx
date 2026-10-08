@@ -2,7 +2,8 @@ import type { CSSProperties, ReactNode } from 'react'
 import { Link, useLocation } from 'react-router'
 import { cleanText } from '../content/markers'
 import { Live } from './Live'
-import { accent } from './palette'
+import { neon, type Tone } from './palette'
+import { useTheme } from './theme'
 import { site } from '../content/site'
 
 declare global {
@@ -99,11 +100,11 @@ export function Section({ title, lead, wide, children }: { title: string; lead?:
 }
 
 // The problem beside the answer: two panels, the second one lit (service and industry pages).
-export function Pair({ before, after }: { before: { title: string; items: string[] }; after: { title: string; items: string[] } }) {
+export function Pair({ before, after, style }: { before: { title: string; items: string[] }; after: { title: string; items: string[] }; style?: CSSProperties }) {
   const sides = [{ ...before, cls: 'before' }, { ...after, cls: 'after' }].filter((x) => x.items.some(filled))
   if (!sides.length) return null
   return (
-    <section className="wrap pair">
+    <section className="wrap pair" style={style}>
       <div className="compare" data-reveal>
         {sides.map((x) => (
           <div key={x.title} className={`panel glass ${x.cls}`}>
@@ -116,14 +117,19 @@ export function Pair({ before, after }: { before: { title: string; items: string
   )
 }
 
-export function PageHead({ title, lead, crumbs, art, children }: { title: string; lead?: string; crumbs?: { to: string; label: string }[]; art?: ReactNode; children?: ReactNode }) {
+// Every inner page opens on a sea of neon waves (React Bits GradientWaves). `tone` picks the page's three colours.
+const DEFAULT_TONE: Tone = ['violet', 'pink', 'cyan']
+const fillVar = (n: Tone[number]) => `var(--nf-${n}, var(--n-${n}))`
+
+export function PageHead({ title, lead, crumbs, art, style, tone = DEFAULT_TONE, children }: { title: string; lead?: string; crumbs?: { to: string; label: string }[]; art?: ReactNode; style?: CSSProperties; tone?: Tone; children?: ReactNode }) {
+  const [haze, wave, crest] = tone
+  useTheme() // re-render on a theme change, so the waves pick up that theme's neons
   return (
-    <header className="page-head">
-      {/* React Bits Threads: faint accent lines behind every inner page title */}
+    <header className="page-head" style={{ '--w1': fillVar(haze), '--w2': fillVar(wave), '--w3': fillVar(crest), ...style } as CSSProperties}>
       <Live
-        className="head-threads"
-        load={() => import('./bits/Threads')}
-        props={{ color: accent().unit, amplitude: 1, distance: 0.1, enableMouseInteraction: true }}
+        className="head-waves"
+        load={() => import('./bits/GradientWaves')}
+        props={{ horizonColor: neon(haze, true), waveColor: neon(wave, true), crestColor: neon(crest, true), fogDepth: 60, tilt: 1.42, zoom: 1.6, waveScale: 1.2, amplitude: 3, speed: 0.35, mouseInteraction: false }}
         poster={<span />}
       />
       <div className="wrap">
@@ -157,7 +163,8 @@ export function Crumbs({ items }: { items: { to: string; label: string }[] }) {
   )
 }
 
-export function BookButton({ label = 'Book a site walk', className = 'btn btn-primary' }: { label?: string; className?: string }) {
+// The one call to action. An enquiry, not a booking: the first step is a conversation.
+export function BookButton({ label = 'Start a conversation', className = 'btn btn-primary' }: { label?: string; className?: string }) {
   return (
     <Link to="/contact" className={className} onClick={() => track('book_site_walk_click')}>
       {label}
