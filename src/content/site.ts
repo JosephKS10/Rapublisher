@@ -84,12 +84,14 @@ export const processSteps = [
   },
 ]
 
-// How an engagement comes together (Pricing page). No prices are published: every engagement is quoted by proposal.
+// How an engagement comes together (Pricing page). No prices are published. The order is the owner's (12 October
+// 2026): a paid Blueprint comes before the build proposal, and each piece of work is quoted in writing first.
 export const ladder = [
   { step: 'A conversation', gets: "You tell us about your business and what's getting in the way. We'll be straight with you about whether we're the right people to help." },
   { step: 'A site walk', gets: 'If we are, we come to you and see the work first-hand, alongside the people who do it.' },
-  { step: 'A proposal', gets: 'You get the scope, the timing and the price in writing, shaped around your business and not a rate card.' },
-  { step: 'The engagement', gets: 'Design, build, rollout and care after launch, with the same engineers from start to finish.' },
+  { step: 'A Blueprint', gets: 'If there is work worth doing, we propose a Blueprint: time on site, process maps, a prototype and a plan split into phases. It is paid work, quoted in writing before it starts.' },
+  { step: 'A proposal for the build', gets: 'From the Blueprint we put the scope, the timing and the price of each phase in writing, shaped around your business and not a rate card.' },
+  { step: 'The engagement', gets: 'Build, rollout and care after launch, with the same engineers from start to finish.' },
 ]
 
 export type TeamMember = { name: string; role: string; bio: string; photo?: string; linkedin?: string; onSiteFocus: string }
@@ -122,12 +124,12 @@ export const faqs = [
   { q: 'What is a forward deployed engineer?', a: 'A forward deployed engineer is a software engineer who works inside your operation to learn how the work really flows, then designs, builds, launches and looks after the software that fixes it. At RaPublisher you deal with the same engineers from the first site walk to the hundredth improvement.' },
   { q: 'Do you really come on site?', a: 'Yes. The site walk, the discovery days, rollout and our visits after launch happen at your premises. Demos during the build can be on site or on screen, whichever suits you.' },
   { q: 'Who actually writes the code?', a: "RaPublisher's engineers, Ramin Shirzad and Joseph Saji, live in Melbourne. They come on site, design your system, build it and look after it. If a larger build ever needs extra hands, we'll tell you who and where first." },
-  { q: 'How much does custom software cost?', a: "It depends on what's being built, how many systems it connects, and how many people and sites it serves, which is why we don't publish a price list. After a conversation and a site walk, you get a written proposal with the scope and the price." },
-  { q: 'Why do you charge for the Blueprint?', a: "Because it's real work: time on site, process maps, a prototype and a plan. It's also where most of the thinking happens, so it's worth doing properly." },
-  { q: 'What if the project goes over budget?', a: 'Your proposal sets out the scope and the price of each phase before it starts. If you want something new partway through, we talk it through and agree the change with you before we do it.' },
-  { q: 'Who owns the software?', a: "That's set out plainly in your agreement. We build on mainstream technology and document what we build, so another competent developer could pick it up." },
+  { q: 'How do you price your work?', a: "RaPublisher doesn't publish a price list. The cost of custom software depends on what's being built, how many systems it connects, and how many people and sites it serves. After a conversation and a site walk, every piece of work is quoted in writing before it starts: first the Blueprint, then each phase of the build." },
+  { q: 'Why do you charge for the Blueprint?', a: "The Blueprint is RaPublisher's discovery and design step: time on site, process maps, a clickable prototype of the key screens and a plan split into phases. We charge for it because it's real work, and it's where most of the thinking happens." },
+  { q: 'What if the project goes over budget?', a: 'Your proposal sets out the scope and the price of each phase before it starts, and your agreement sets out how changes are handled. If you want something new partway through, we talk it through and agree the change with you before we do it.' },
+  { q: 'Who owns the software and the code?', a: 'Who owns the software RaPublisher builds for you is set out plainly in your agreement, and we go through it with you before you sign. We build on mainstream technology and document what we build, so another competent developer could pick it up.' },
   { q: "What happens if you're not around?", a: 'We build on mainstream technology and document what we build, so a competent developer could pick it up. How a handover works is set out in your agreement.' },
-  { q: "Can't we just buy something off the shelf?", a: "Often you can, and we'll tell you at the site walk. If an off-the-shelf product fits most of how you work, we'll say so and can help connect it. Custom software makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day. We build only what off-the-shelf can't do, and connect the rest." },
+  { q: "Can't we just buy something off the shelf?", a: "Often you can buy something off the shelf, and we'll tell you at the site walk. If an off-the-shelf product fits most of how you work, we'll say so and can help connect it. Custom software makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day. We build only what off-the-shelf can't do, and connect the rest." },
   { q: 'Which systems do you work with?', a: 'Commonly Xero, MYOB, Shopify, WooCommerce and Zoho, plus most systems that offer an API or a data export. [CONFIRM list]' },
   { q: 'Where is our data stored?', a: "Where your system and your data are hosted is agreed with you before anything is built, and written into your agreement. We'll explain the options in plain English." },
   { q: 'How do you protect formulas and sensitive data?', a: 'Access by role, multi-factor sign-in, a log of every view and change, controlled exports, and confidentiality agreements before we see anything.' },
@@ -137,7 +139,7 @@ export const faqs = [
   { q: 'What areas do you cover?', a: 'Metro Melbourne for site walks, and regional Victoria by arrangement. Interstate projects case by case. [DECISION]' },
   { q: 'Are we too small for this?', a: "If two or three people retype or reconcile the same information every day, it's usually worth a conversation. Try the calculator." },
   { q: 'Are you insured?', a: '[TODO: types of cover, then "Certificates are available on request before the first visit."]' },
-  { q: 'Can you take over a system someone else built?', a: 'Yes, after a rescue check, so we both know what we\'re taking on.' },
+  { q: 'Can you take over a system someone else built?', a: "Yes. RaPublisher can take over a system another developer built, a stalled project or a tool built with an AI app builder. We start with a rescue check: a careful review of who has access, where the data lives, backups, and who owns the accounts and code. Then we recommend whether to fix it or rebuild it, so we both know what we're taking on." },
 ]
 
 export const pickFaqs = (...ns: number[]) => ns.map((n) => faqs[n - 1])
