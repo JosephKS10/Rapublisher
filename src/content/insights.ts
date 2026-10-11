@@ -1,7 +1,8 @@
-// Insights (C11). First drafts written from the research in the brief (Part D) and from our own prices and calculator.
+// Insights (C11). First drafts written from the research in the brief (Part D) and from our own calculator.
 // Every figure from outside names its source and carries [CONFIRM] until it has been re-checked against that source.
 // B9 asks for something only we can say in each article: the [TODO] lines mark where a real field example goes.
-// Joseph and Ramin must read each one before launch; set draft: true to pull an article.
+// Joseph and Ramin must read each one before launch. To pull an article, remove it from this file: a draft flag
+// hides it from the pages but its text would still ship in the script bundle.
 
 export type Block = { h: string } | { p: string } | { ul: string[] }
 
@@ -55,62 +56,6 @@ export const insights: Insight[] = [
       { to: '/work/multi-site-operations-platform', label: 'Case study: one system for stock, orders, sites, inductions and deliveries' },
     ],
     draft: false,
-  },
-  {
-    slug: 'custom-software-cost-melbourne',
-    title: 'What custom software costs in Melbourne in 2026',
-    metaTitle: 'What custom software costs in Melbourne | RaPublisher',
-    description: 'Published hourly rates, day rates and project sizes for Melbourne in 2026, what moves the price, and how to budget a first phase.',
-    date: '2026-10-08',
-    author: 'Joseph Saji [CONFIRM]',
-    topic: 'Pricing',
-    body: [
-      { p: 'Published cost guides put custom software in Melbourne at about A$25,000 to A$250,000 or more, depending on what is built. [CONFIRM: re-check against the sources] The useful question is not the total, it is what a sensible first phase costs and what moves that number.' },
-      { h: 'What the published guides say' },
-      { ul: [
-        'Agency rates of about A$120 to A$250 an hour, with most quality mid-market agencies at A$150 to A$200. [CONFIRM]',
-        'Senior day rates of about A$1,050 to A$1,300. [CONFIRM]',
-        'Some established Melbourne firms publish minimum project sizes of A$25,000 to A$50,000 or more. [CONFIRM]',
-        'Offshore firms with Australian pages at roughly A$50 to A$99 an hour. [CONFIRM]',
-      ] },
-      { p: 'Most of these figures come from agencies\' own cost guides, so read them as ranges, not facts.' },
-      { h: 'What moves the price' },
-      { ul: [
-        'How many kinds of users there are and how many screens they need.',
-        'How many systems are connected, and how tidy their data is.',
-        'How much existing data needs cleaning and moving.',
-        'Whether it has to work offline or on phones.',
-        'The reports you need.',
-        'How many sites are rolled out and trained.',
-      ] },
-      { h: 'Typical ranges by type of work' },
-      { p: 'These are our own typical ranges, plus GST, with the usual time each takes. [DECISION]' },
-      { ul: [
-        'An integration between two or three systems: A$8,000 to A$40,000, 2 to 8 weeks.',
-        'An AI pilot on one workflow: A$10,000 to A$30,000, 3 to 6 weeks.',
-        'A field or floor app, first version: A$15,000 to A$60,000, 4 to 10 weeks.',
-        'Operations software, first phase: A$30,000 to A$90,000, 6 to 12 weeks.',
-      ] },
-      { h: 'Fixed price or hourly' },
-      { p: 'Hourly billing puts the risk of a blowout on you. A fixed price puts it on the builder, which is only fair if the builder has seen the work first. That is why we fix the price for each phase after a Blueprint, not from a one-line brief. If you ask for something new partway through, we price the change and you decide before we do it.' },
-      { h: 'The costs people forget' },
-      { p: 'Software is never finished. Industry guides put ongoing maintenance at roughly 15% to 20% of the original build cost each year. [CONFIRM] On a A$60,000 build that is A$750 to A$1,000 a month. Hosting and third-party subscriptions sit on top, and they are best paid by you directly, so you always own the accounts.' },
-      { h: 'How to budget a first phase' },
-      { p: 'Pick the one workflow that causes the most double handling and build that first. Our first phases typically fall between A$30,000 and A$90,000 plus GST. [DECISION] Integrations and pilots can cost less. A free site walk tells you whether it is worth going further, and a Blueprint (A$3,500 to A$7,500 plus GST, credited against the first phase if you go ahead within 60 days) gives you a fixed price before you commit. [DECISION] [TODO: add a real, anonymised first-phase example with its scope and price band]' },
-      { p: 'These are ranges, not quotes. Prices are in Australian dollars and exclude GST.' },
-    ],
-    sources: [
-      { label: '13Labs: custom software development cost in Melbourne', url: 'https://www.13labs.au/guides/custom-software-development-cost-melbourne' },
-      { label: 'Cipher Projects: custom software development cost in Australia, 2026', url: 'https://www.cipherprojects.com/blog/posts/custom-software-development-cost-australia-2026/' },
-      { label: 'Expeed: custom software cost in Australia, 2026', url: 'https://expeed.com.au/articles/custom-software-cost-australia-2026' },
-      { label: 'Cleveroad: software development companies in Australia', url: 'https://www.cleveroad.com/blog/top-software-development-companies-in-australia/' },
-    ],
-    next: [
-      { to: '/pricing', label: 'Pricing: four steps, each priced before we start' },
-      { to: '/services/operations-software', label: 'Operations software: what a first phase covers' },
-      { to: '/work/super-pro-services', label: 'Case study: a public website and a workforce portal in one system' },
-    ],
-    draft: true, // pulled 8 October 2026: the site no longer publishes prices
   },
   {
     slug: 'real-cost-of-double-handling',
