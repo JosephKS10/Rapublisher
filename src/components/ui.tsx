@@ -131,6 +131,7 @@ export function PageHead({ title, lead, crumbs, art, style, tone = DEFAULT_TONE,
         load={() => import('./bits/GradientWaves')}
         props={{ horizonColor: neon(haze, true), waveColor: neon(wave, true), crestColor: neon(crest, true), fogDepth: 60, tilt: 1.42, zoom: 1.6, waveScale: 1.2, amplitude: 3, speed: 0.35, mouseInteraction: false }}
         poster={<span />}
+        wait
       />
       <div className="wrap">
         {crumbs && <Crumbs items={crumbs} />}

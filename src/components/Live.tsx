@@ -17,6 +17,10 @@ const hasWebGL = () => {
   }
   return webgl
 }
+// A layer marked `wait` holds off until the visitor first moves, scrolls, touches or types, or 5 seconds have passed.
+// Once that has happened, later layers (the next page's head) mount straight away.
+const FIRST = ['pointermove', 'scroll', 'touchstart', 'keydown'] as const
+let awake = false
 
 export function Live<P extends object>({
   load,
@@ -24,12 +28,14 @@ export function Live<P extends object>({
   poster,
   className = '',
   gpu,
+  wait,
 }: {
   load: () => Promise<{ default: ComponentType<P> }>
   props: P
   poster?: ReactNode
   className?: string
   gpu?: boolean // the layer draws with WebGPU; without it the poster stays
+  wait?: boolean // above the fold: keep the layer out of the page load, start it on the visitor's first move
 }) {
   const [Comp, setComp] = useState<ComponentType<P> | null>(null)
   const el = useRef<HTMLDivElement>(null)
@@ -40,14 +46,20 @@ export function Live<P extends object>({
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || nav.connection?.saveData || (nav.deviceMemory ?? 8) <= 2) return
     let alive = true
     let id = 0
+    let timer = 0
     const idle = 'requestIdleCallback' in window
     const go = () => (gpu ? hasWebGPU() : hasWebGL()) && load().then((m) => alive && setComp(() => m.default))
+    const mount = () => { id = idle ? requestIdleCallback(go, { timeout: 1500 }) : window.setTimeout(go, 300) }
+    const stop = () => { clearTimeout(timer); FIRST.forEach((e) => removeEventListener(e, wake)) }
+    const wake = () => { awake = true; stop(); mount() }
     // Wait until the layer is within a screen of the viewport, so effects far down the page cost nothing at load.
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return
         io.disconnect()
-        id = idle ? requestIdleCallback(go, { timeout: 1500 }) : window.setTimeout(go, 300)
+        if (!wait || awake) return mount()
+        FIRST.forEach((e) => addEventListener(e, wake, { passive: true }))
+        timer = window.setTimeout(wake, 5000)
       },
       { rootMargin: '100% 0px' },
     )
@@ -55,6 +67,7 @@ export function Live<P extends object>({
     return () => {
       alive = false
       io.disconnect()
+      stop()
       if (idle) cancelIdleCallback(id)
       else clearTimeout(id)
     }
