@@ -136,7 +136,7 @@ export const Img = ({ s, sizes = '(min-width: 960px) 40vw, 90vw', eager, priorit
 export const Phone = ({ s, sizes = '14rem', eager, priority, tone }: { s: Shot; sizes?: string; eager?: boolean; priority?: boolean; tone?: Work['phone'] }) => (
   <div className="iphone" data-tone={tone}>
     <div className="iphone-body">
-      <div className="iphone-screen"><Img s={{ ...s, alt: '' }} sizes={sizes} eager={eager} priority={priority} /></div>
+      <div className="iphone-screen"><Img s={s} sizes={sizes} eager={eager} priority={priority} /></div>
     </div>
   </div>
 )
@@ -147,7 +147,7 @@ export const Tablet = ({ s, sizes = '(min-width: 960px) 58rem, 115vw' }: { s: Sh
   <div className="ipad">
     <div className="ipad-body">
       <div className="ipad-screen" style={s.focus ? ({ '--focus': s.focus } as CSSProperties) : undefined}>
-        <Img s={{ ...s, alt: '' }} sizes={sizes} />
+        <Img s={s} sizes={sizes} />
       </div>
     </div>
   </div>

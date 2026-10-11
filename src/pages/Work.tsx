@@ -93,7 +93,7 @@ export function CaseStudy() {
             {w.images.map((s) => (
               <li key={s.src} className={s.mobile ? 'mob' : undefined}>
                 <figure>
-                  {s.mobile ? <Phone s={s} sizes="15rem" tone={w.phone} /> : <div className="bezel"><Img s={{ ...s, alt: '' }} sizes="(min-width: 960px) 58rem, 86vw" /></div>}
+                  {s.mobile ? <Phone s={{ ...s, alt: '' }} sizes="15rem" tone={w.phone} /> : <div className="bezel"><Img s={{ ...s, alt: '' }} sizes="(min-width: 960px) 58rem, 86vw" /></div>}
                   <figcaption>{s.caption ?? s.alt}</figcaption>
                 </figure>
               </li>
