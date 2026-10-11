@@ -28,7 +28,7 @@ export function CtaBand() {
       <div className="wrap">
         <div data-reveal>
           <h2 id="cta-title">Tell us what would make your working day easier.</h2>
-          <p>Our engineers do the work themselves, so we take on only a few engagements at a time. Tell us about your business, and if we're the right people to help, we'll come and see the work for ourselves.</p>
+          <p>Tell us about your business. If we're the right people to help, we'll come and see the work for ourselves.</p>
           <div className="actions">
             <BookButton />
           </div>

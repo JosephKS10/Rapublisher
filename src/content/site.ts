@@ -115,7 +115,7 @@ export const beliefs = [
   { title: 'Turn up.', body: 'The real requirements are found on the floor, not in a meeting room.' },
   { title: 'Listen first.', body: "The people doing the work usually know what's wrong. We ask them." },
   { title: 'Say it plainly.', body: "If we can't explain it simply, we don't understand it well enough yet." },
-  { title: 'Do less, properly.', body: "We'd rather take on a few engagements and give each one our full attention." },
+  { title: 'Do less, properly.', body: 'There are two of us and we do the work ourselves, so we work with a small number of businesses at a time.' },
   { title: 'Stay.', body: 'Launch is the start of the job, not the end.' },
 ]
 
