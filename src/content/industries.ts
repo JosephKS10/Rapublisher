@@ -25,7 +25,7 @@ export const industries: Industry[] = [
     metaTitle: 'Software for manufacturers in Melbourne | RaPublisher',
     metaDescription:
       'Batch records, formula protection, stock, B2B orders and Xero working as one system, designed on your floor by Melbourne engineers.',
-    h1: 'Software for Victorian makers',
+    h1: 'Software for Victorian manufacturers and formulators',
     lead: "RaPublisher builds software for Victorian manufacturers and formulators who've outgrown spreadsheets: chemicals and cleaning products, cosmetics, food and drink, and made-to-order products. [CONFIRM which sub-sectors we can show proof for] We're based in Melbourne's south-east, Australia's biggest manufacturing region, so for most of the region a site walk is a short drive away. [CONFIRM suburb]",
     pains: [
       'Batch and production records on paper or in spreadsheets.',
@@ -40,14 +40,14 @@ export const industries: Industry[] = [
       'A formula vault: access by role, version history, and a log of every view and change.',
       'Raw materials and finished goods tracked by location, batch and expiry.',
       'A document library linking safety data sheets and specifications to each product.',
-      'Traceability reports you can run in minutes.',
+      'Traceability reports you can run yourself, from raw material to dispatch.',
       'B2B ordering with customer price lists, connected to Xero or MYOB.',
     ],
     special: {
       heading: 'Your formulas stay yours',
       body: "Your formulas are the business. We design systems so the people who need a formula can see it, nobody else can, and every view and change is logged. Production sees what this batch needs without seeing the master formula. Exports are controlled, sign-in uses multi-factor authentication, where your data is hosted is agreed with you first, and we sign a confidentiality agreement before we see anything.\n\nWe don't give compliance advice. We make your records easier to keep, find and prove.",
     },
-    proof: ['ccsm-mobile-commerce', 'b2b-ordering-cleaning-chemicals'],
+    proof: ['ccsm-mobile-commerce'],
     services: ['operations-software', 'integrations'],
     faqs: [12, 11],
   },
@@ -59,7 +59,7 @@ export const industries: Industry[] = [
     metaDescription:
       'Trade ordering portals, customer price lists, stock across warehouses and accounting integration that agree with each other. Melbourne.',
     h1: 'B2B ordering, price lists and stock that agree with each other',
-    lead: 'RaPublisher builds B2B ordering, price list and stock systems for wholesalers and distributors whose trade customers still order by email and phone, and whose price lists live in spreadsheets.',
+    lead: 'RaPublisher builds B2B ordering, price list and stock systems in Melbourne for wholesalers and distributors whose trade customers still order by email and phone, and whose price lists live in spreadsheets.',
     pains: [
       'Trade orders by email, phone and text, all retyped.',
       "A different price list for every big customer, kept in someone's head.",
@@ -80,7 +80,7 @@ export const industries: Industry[] = [
       heading: 'Built around how your customers order',
       body: "Your best trade customers shouldn't have to learn a new way to buy. We start with how they order today, by phone, email or a rep's visit, and make the online route quicker than all three.",
     },
-    proof: ['b2b-ordering-cleaning-chemicals', 'ccsm-mobile-commerce'],
+    proof: ['ccsm-mobile-commerce'],
     services: ['integrations', 'operations-software'],
   },
   {
@@ -90,8 +90,8 @@ export const industries: Industry[] = [
     metaTitle: 'Software for cleaning and multi-site teams | RaPublisher',
     metaDescription:
       'Sign-in, inductions, rosters, site supplies and client reporting in one system for cleaning, facilities and field teams. Melbourne.',
-    h1: 'Software for teams spread across many sites',
-    lead: 'RaPublisher builds software for commercial cleaning, facilities and field service businesses where the work happens at client sites, not in an office.',
+    h1: 'Software for cleaning and facilities teams spread across many sites',
+    lead: 'RaPublisher builds software in Melbourne for commercial cleaning, facilities and field service businesses where the work happens at client sites, not in an office.',
     pains: [
       "Nobody's sure who's on which site right now.",
       'Sign-in by text message, and timesheets disputed every pay run.',

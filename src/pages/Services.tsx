@@ -15,9 +15,9 @@ export function ServicesIndex() {
         description="Operations software, integrations, practical AI, field apps, rescue and support, designed on site by Melbourne forward deployed engineers."
       />
       <PageHead
-        title="What we build"
+        title="Custom software for Melbourne businesses: what we build"
         tone={['cyan', 'violet', 'pink']}
-        lead="We build and connect the systems your team uses every day: orders, stock, production and people."
+        lead="RaPublisher builds and connects the systems Melbourne businesses use every day: orders, stock, production and people. Most projects start with the one workflow that causes the most double handling. A site walk tells us whether that needs new operations software, a connection between tools you already pay for, or nothing custom at all."
         crumbs={[{ to: '/services', label: 'Services' }]}
       />
       <div className="wrap pad-b">
@@ -66,12 +66,11 @@ export function ServicePage() {
       <section className="wrap pair">
         <div className="terms glass" data-reveal>
           <div>
-            <h2>How this is scoped</h2>
-            <p>Every engagement is shaped around one business, so it starts with a conversation and a look at the work.</p>
+            <h2>How this is scoped and priced</h2>
+            <p>{s.scope}</p>
           </div>
           <div>
-            <h2>What it costs</h2>
-            <p>Quoted by proposal, once we understand what you need.</p>
+            <p>RaPublisher quotes this work by written proposal, once we've seen it. We don't publish a price list, because every engagement is shaped around one business.</p>
             <p className="muted">See <Link to="/how-we-work">how we work</Link> and <Link to="/pricing">how we price</Link>.</p>
             {insight && <p className="muted">Background: <Link to={`/insights/${insight.slug}`}>{insight.title}</Link></p>}
           </div>

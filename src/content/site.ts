@@ -8,13 +8,13 @@ export const site = {
   descriptor: 'Forward deployed software engineering, Melbourne.',
   email: 'hello@rapublisher.com.au', // [DECISION] shared inbox, must exist before launch
   phone: '[TODO: 03 phone]',
-  area: 'Site walks across metro Melbourne. Regional Victoria by arrangement.',
+  area: 'We visit businesses across metro Melbourne. Regional Victoria by arrangement.',
   legal: 'RA PUBLISHER PTY LTD. ACN 643 002 279. ABN [TODO].',
   copyright: '© 2026 RA PUBLISHER PTY LTD.',
   acknowledgement:
     'RaPublisher acknowledges the Traditional Owners of the lands where we live and work, and pays respect to their Elders past and present.',
   defaultDescription:
-    'Forward deployed software engineers in Melbourne. We learn how your business runs, then build and look after the software it needs.',
+    'RaPublisher is a forward deployed software engineering business in Melbourne. Its engineers go on site at Victorian manufacturers, wholesalers and multi-site service businesses, learn how the work flows, then build, connect and look after the software it needs.',
 }
 
 export const nav = [
@@ -49,7 +49,7 @@ export const problems = [
 // response times live in each client's proposal and agreement, never on the site.
 export const care = [
   "We get to know the people who'll use the system, not only the person who signs off on it.",
-  "We speak plainly. If we can't explain something simply, we don't understand it well enough yet.",
+  'We speak plainly. We bring options and a recommendation in everyday words, and you choose.',
   "We tell you when you don't need us, or when something off the shelf will do the job.",
   'We train your team where they work, at times that suit their shifts.',
   'We plan changes around your busy periods, and run old and new side by side where it matters.',
@@ -80,7 +80,7 @@ export const processSteps = [
   {
     title: 'Run and improve',
     meta: 'Support as set out in your agreement.',
-    body: "After launch we look after your system and keep improving it from your list. We come back on site to see how it's going, because the work keeps changing and the software should keep up.",
+    body: "After launch we look after your system and keep improving it from your list. We come back on site to see how it's going, because the work keeps changing and the software should keep up. [CONFIRM]",
   },
 ]
 

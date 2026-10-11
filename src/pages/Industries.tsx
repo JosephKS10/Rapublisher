@@ -17,7 +17,7 @@ export function IndustriesIndex() {
       <PageHead
         title="Businesses we know"
         tone={['rose', 'orange', 'lime']}
-        lead="Victorian businesses that make, move and service physical things, and run on spreadsheets, disconnected apps and a few people's memory."
+        lead="RaPublisher works with Victorian businesses that make, move and service physical things, and run on spreadsheets, disconnected apps and a few people's memory. Most have 10 to 200 people and no developers of their own."
         crumbs={[{ to: '/industries', label: 'Industries' }]}
       />
       <div className="wrap pad-b">

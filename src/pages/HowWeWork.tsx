@@ -55,7 +55,7 @@ export default function HowWeWork() {
         crumbs={[{ to: '/how-we-work', label: 'How we work' }]}
         tone={['violet', 'cyan', 'lime']}
         title="We learn the work first. Then we build the software."
-        lead="A forward deployed engineer works inside your operation: on the floor, in the warehouse, out at your sites. That's how we find out how the work really flows, and it's why what we build gets used."
+        lead="A forward deployed engineer works inside your operation: on the floor, in the warehouse, out at your sites. That's how we find out how the work really flows, and it's why what we build gets used. We work with businesses across metro Melbourne, and regional Victoria by arrangement."
       />
 
       <section className="section raised" aria-labelledby="five-steps">
@@ -68,6 +68,12 @@ export default function HowWeWork() {
       </section>
 
       <Section title="How this differs from the usual way" wide>
+        <p className="lead">
+          The usual way to buy software starts from a brief written in a meeting, with an account manager between you and the developers
+          and progress shown near the end. RaPublisher's forward deployed engineers start with time on your floor, build the system
+          themselves, show you working software as it is built, train your team on site around their shifts, and stay on to look after
+          it after launch.
+        </p>
         <div className="table-wrap">
           <table className="table stacks">
             <caption className="sr-only">The usual way compared with forward deployed engineering</caption>

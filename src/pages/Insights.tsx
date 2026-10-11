@@ -20,8 +20,8 @@ export default function Insights() {
   return (
     <>
       <Seo
-        title="Insights and field notes | RaPublisher"
-        description="Articles and field notes from Melbourne forward deployed engineers on operations software, integrations and practical AI."
+        title="Insights from our engineers | RaPublisher"
+        description="Articles from Melbourne forward deployed engineers on how forward deployed engineering works and what double handling costs a business."
       />
       <PageHead title="Insights" lead="Articles from RaPublisher's engineers on how we work and what double handling really costs a business." crumbs={[{ to: '/insights', label: 'Insights' }]} />
       <div className="wrap pad-b">

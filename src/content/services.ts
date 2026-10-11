@@ -10,6 +10,7 @@ export type Service = {
   metaDescription: string
   h1: string
   lead: string
+  scope: string // how this kind of work is scoped, shown above the line on how it is quoted
   symptoms: string[]
   examples: string[]
   extra?: Section[]
@@ -29,7 +30,8 @@ export const services: Service[] = [
     metaDescription:
       'Orders, stock, production, quoting and scheduling in one system built around how your business runs. Designed on site in Melbourne.',
     h1: 'Operations software that fits how you work',
-    lead: 'Orders, stock, production, quoting and scheduling in one system, built around your process instead of bending your process around the software.',
+    lead: 'Orders, stock, production, quoting and scheduling in one system, built around your process instead of bending your process around the software. Designed on site by engineers based in Melbourne.',
+    scope: "We start with the one workflow that causes the most double handling and scope the first phase around it. Later phases build on that.",
     symptoms: [
       'Spreadsheets are the real system of record, and only one or two people understand them.',
       'Someone counts stock by hand before promising a delivery date.',
@@ -46,6 +48,7 @@ export const services: Service[] = [
       "Dashboards built on live data, not last month's export.",
     ],
     relatedWork: ['multi-site-operations-platform'],
+    insight: 'what-is-a-forward-deployed-engineer',
     faqs: [
       { q: 'Should we buy an ERP instead?', a: "Sometimes. If an off-the-shelf system fits most of how you work, we'll say so and can help connect it. Custom makes sense when your way of working is part of your edge, or when the gaps cause workarounds every day." },
       { q: 'Will it work with Xero or MYOB?', a: 'Yes. Your accounting system stays the source of truth for the books, and we connect to it.' },
@@ -59,8 +62,9 @@ export const services: Service[] = [
     metaTitle: 'Custom Shopify and Xero integrations | RaPublisher',
     metaDescription:
       'Connect Shopify, Xero, MYOB, Zoho and your other tools so information is entered once and matches everywhere. Melbourne engineers.',
-    h1: 'Connect the tools you already pay for',
+    h1: 'Connect Shopify, Xero and the tools you already pay for',
     lead: "Shopify, Xero, MYOB, Zoho, your B2B ordering and your spreadsheets, sharing information so it's entered once and matches everywhere. [CONFIRM platform list]",
+    scope: "We scope an integration around what has to match: which system holds the truth for orders, stock and prices, and what should happen when a sync fails.",
     symptoms: [
       'Web orders get retyped into the accounting system.',
       'Stock levels in your store and your inventory app drift apart.',
@@ -74,10 +78,10 @@ export const services: Service[] = [
       'Trade customer accounts with their own price lists and tiers.',
       'Web enquiries turned into approved trade accounts without retyping.',
       'Payments and order processing for custom stores.',
-      'Alerts when a sync fails, before a customer notices.',
+      'Alerts when a sync fails, sent to a person who can act on them.',
       "[CONFIRM which platforms we've integrated in production, and list only those on the live page.]",
     ],
-    relatedWork: ['ccsm-mobile-commerce', 'b2b-ordering-cleaning-chemicals'],
+    relatedWork: ['ccsm-mobile-commerce'],
     moreFaqs: [10],
     insight: 'real-cost-of-double-handling',
     faqs: [
@@ -94,6 +98,7 @@ export const services: Service[] = [
       'AI that reads documents, sorts enquiries and drafts the routine work, with people approving anything that matters. Melbourne engineers.',
     h1: 'Practical AI, with people in control',
     lead: 'We use AI where it saves real time on real work: reading purchase orders and invoices, sorting enquiries, drafting replies and spotting problems. People approve anything that matters.',
+    scope: "We scope AI work around one workflow first, and measure it against how that workflow runs today before going further.",
     symptoms: [
       'Purchase orders arrive as PDFs and get typed in by hand.',
       'Supplier invoices are keyed into the accounts one line at a time.',
@@ -113,7 +118,7 @@ export const services: Service[] = [
         heading: 'How we keep it safe',
         items: [
           "AI suggests. People decide anything that affects money, safety or someone's job.",
-          'Every automated action is logged and can be reversed.',
+          'Automated actions are logged, and we design them so a person can check and correct them.',
           'We check how each AI provider handles your data before we use it, and explain it to you in plain English.',
           'Where your data is processed and stored is agreed with you first.',
           'We test accuracy on your real documents before go-live, and keep measuring after.',
@@ -136,8 +141,9 @@ export const services: Service[] = [
     metaTitle: 'Custom sign-in, induction and field apps | RaPublisher',
     metaDescription:
       "Simple apps for sign-in, inductions, job sheets, stock counts and deliveries, built for people who aren't at a desk. Melbourne engineers.",
-    h1: "Apps for the people who aren't at a desk",
+    h1: "Sign-in, induction and job sheet apps for people who aren't at a desk",
     lead: 'Simple, sturdy apps for sign-in, inductions, job sheets, stock counts, deliveries and checklists. Built for gloves, glare and patchy reception.',
+    scope: "We scope an app around who will use it and where: the phones they carry, how good the reception is, and what the office needs back from them.",
     symptoms: [
       'Sign-in is a clipboard by the door or a group text.',
       'Inductions happen on paper, and nobody can find the signed forms.',
@@ -163,7 +169,7 @@ export const services: Service[] = [
     moreFaqs: [9],
     faqs: [
       { q: 'Native app or web app?', a: "A web app that installs to the home screen is often enough, and it avoids app store delays. If you need biometric sign-in, background notifications or heavy offline use, we'll recommend native." },
-      { q: 'Will the whole team actually use it?', a: "If it's built around what they already do and they're trained on site, yes. We test with the least enthusiastic users first." },
+      { q: 'Will the whole team actually use it?', a: "That's the aim, and it's why we build around what they already do and train people on site. We test with the least enthusiastic users first." },
     ],
   },
   {
@@ -172,9 +178,10 @@ export const services: Service[] = [
     summary: 'Taking over stalled projects and making AI-built tools safe to rely on.',
     metaTitle: 'Software rescue and AI-built app checks | RaPublisher',
     metaDescription:
-      'Stalled project, vanished developer, or an AI-built tool your business now relies on? A careful check, a plain-English report and a fix.',
+      'Stalled project, vanished developer, or an AI-built tool your business now relies on? A careful check and a plain-English report on what it needs.',
     h1: 'Rescue for stalled projects and AI-built tools',
     lead: "If a developer went quiet, a project stalled, or a tool someone built with AI has become critical, we'll check it, tell you straight what it needs, and fix it or rebuild it.",
+    scope: "Rescue work starts with the rescue check. What it finds decides whether the next step is a fix or a rebuild, and we scope that from the report.",
     symptoms: [
       'Nobody can change the system without breaking something.',
       "The developer stopped replying, and you're not sure who has the passwords.",
@@ -197,8 +204,8 @@ export const services: Service[] = [
         body: 'Tools built quickly with AI app builders can work well and still leave doors open. Security researchers scanning thousands of live AI-built apps have found serious vulnerabilities, exposed keys and leaking data at scale. [CONFIRM sources before quoting numbers on the live page]',
       },
     ],
-    relatedWork: ['storefront-rebuild'],
-    moreFaqs: [14, 19],
+    relatedWork: [],
+    moreFaqs: [19],
     faqs: [
       { q: 'Will you judge us for building it with AI?', a: 'No. Building it was a smart way to learn what you need. Our job is to make it safe to rely on.' },
       { q: 'Can you work with our original developer?', a: 'Yes, and a proper handover helps everyone.' },
@@ -213,14 +220,15 @@ export const services: Service[] = [
     metaTitle: 'Software support and improvement | RaPublisher',
     metaDescription:
       'Hosting, monitoring, backups, security updates and steady improvement, from the same Melbourne engineers who built your system.',
-    h1: 'Here after go-live',
-    lead: 'Software is never finished. We host it, watch it, keep it secure and keep improving it, with the same engineers who built it.',
+    h1: 'Here after go-live: software hosting, support and improvement',
+    lead: 'Software is never finished. We host it, watch it, keep it patched and keep improving it, with the same engineers who built it.',
+    scope: "We scope care around the system: what needs watching, how often it changes, and how much it matters when it stops.",
     symptoms: [],
     examples: [],
     extra: [
       {
         heading: 'Support after launch',
-        body: "Support after go-live is set out in your agreement: fixes to anything we built that doesn't work as agreed, answers to questions, and small adjustments.",
+        body: "What support covers after go-live is agreed with you and written into your agreement. It usually means fixing anything we built that doesn't work as agreed, answering questions and making small adjustments.",
       },
       {
         heading: 'Care that fits the system',
@@ -234,10 +242,10 @@ export const services: Service[] = [
         heading: 'If you ever move on',
         body: 'How a handover works is set out in your agreement: code, credentials, documentation and a walkthrough, so the next team can pick it up.',
       },
-      { heading: "Systems we didn't build", body: 'We can look after those too, after a rescue check.' },
+      { heading: "Systems we didn't build", body: "RaPublisher can look after systems we didn't build too. We start with a rescue check, so we both know what we're taking on." },
     ],
     relatedWork: [],
-    moreFaqs: [19, 8, 7],
+    moreFaqs: [19, 8],
     faqs: [],
   },
 ]

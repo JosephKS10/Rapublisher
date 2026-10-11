@@ -21,7 +21,7 @@ const Heading = ({ id, text }: { id: string; text: string }) => <h2 id={id} data
 // The statement rises into place word by word as it scrolls up the screen. Browsers with CSS scroll timelines tie it
 // to the scroll position; the others play it once when the paragraph comes into view (the observer below).
 const STATEMENT =
-  "We're forward deployed engineers based in Melbourne. We come to your factory, warehouse or sites and learn the work from the people who do it. Then we build the software that takes the double handling off their plates, and we stay to look after it."
+  "We're RaPublisher: forward deployed engineers based in Melbourne. We come to you and learn the work from the people who do it. Then we build the software that takes the double handling off their plates, and we stay to look after it."
 
 export default function Home() {
   const statement = useRef<HTMLParagraphElement>(null)
@@ -46,7 +46,7 @@ export default function Home() {
             <h1 id="hero-title" className="hero-title">
               <span>Software built where</span> <span className="accent">the work happens.</span>
             </h1>
-            <p className="hero-lead">We spend time in your business, get to know your people and how the work really flows, then build software that makes their days easier.</p>
+            <p className="hero-lead">Melbourne engineers who spend time in your factory, warehouse or sites, get to know your people, then build software that makes their days easier.</p>
             <div className="actions">
               <BookButton />
               <Link to="/work" className="btn btn-ghost">See our work</Link>
@@ -100,7 +100,7 @@ export default function Home() {
               with the same engineers from the first conversation to the hundredth improvement.
             </p>
             <Faq items={pickFaqs(1)} />
-            <p><Link to="/how-we-work" className="text-link">How we work</Link></p>
+            <p className="actions"><Link to="/how-we-work" className="text-link">How we work</Link><Link to="/pricing" className="text-link">How we price</Link></p>
           </div>
         </div>
       </section>
@@ -142,7 +142,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head">
             <Heading id="look-after" text="How we look after you" />
-            <p>Good software comes from knowing a business and the people in it. This is what that looks like in practice.</p>
+            <p>This is how we treat your people and your business while we work with you.</p>
           </div>
           <Care />
         </div>

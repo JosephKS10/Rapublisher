@@ -34,7 +34,7 @@ export const Privacy = () => (
     lead="[TODO: lawyer to draft and review before launch. Date the policy and review it every six months.]"
     sections={[
       ['Who we are', 'RA PUBLISHER PTY LTD, ACN 643 002 279. ABN [TODO]. Contact: ' + site.email + '.'],
-      ['What we collect', 'Enquiry and booking details you send us, emails, and website analytics collected without cookies. [TODO]'],
+      ['What we collect', 'Enquiry details you send us, emails, and website analytics collected without cookies. [TODO]'],
       ['Why we collect it', '[TODO]'],
       ['Who we share it with', '[TODO: hosting, email, booking and CRM providers, listed by type]'],
       ['Overseas disclosure', '[TODO: countries where providers or people may store or access information, matching where the engineering happens (B5)]'],

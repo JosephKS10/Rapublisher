@@ -15,7 +15,7 @@ export default function About() {
       <PageHead
         tone={['orange', 'rose', 'violet']}
         title="Engineers who'd rather see the floor than read the brief"
-        lead="RaPublisher is a Melbourne software engineering business. We work inside our clients' operations, build the systems they need, and look after them for the long run."
+        lead="RaPublisher is a forward deployed software engineering business in Melbourne. Our two engineers, Ramin Shirzad and Joseph Saji, go on site at Victorian manufacturers, wholesalers and multi-site service businesses with no developers of their own. We learn how the work flows, then build, connect and look after the software it needs."
         crumbs={[{ to: '/about', label: 'About' }]}
       />
 

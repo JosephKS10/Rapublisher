@@ -1,6 +1,9 @@
 // Case studies that are not approved for publication (B8). Nothing imports this file, which is what keeps their
 // text out of the script bundle: a `draft` flag in work.ts would hide them from pages but still ship the words.
-// To publish one, move its object into the `work` array in work.ts and set draft: false.
+// To publish one, move its object into the `work` array in work.ts and set draft: false, then list its slug again:
+// - b2b-ordering-cleaning-chemicals: `relatedWork` of integrations (services.ts), `proof` of manufacturing and
+//   wholesale-distribution (industries.ts).
+// - storefront-rebuild: `relatedWork` of rescue (services.ts).
 import type { Work } from './work'
 
 export const draftWork: Work[] = [
