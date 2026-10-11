@@ -584,13 +584,15 @@
     .table.stacks td[data-label]::before { content: attr(data-label) ': '; color: var(--muted); }
   }
   /* Pricing ladder: four plates rising like stairs */
-  .rungs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); align-items: end; }
-  .rungs li { display: grid; gap: 0.9rem; align-content: start; padding: clamp(1.1rem, 1.6vw, 1.6rem); min-height: calc(15rem + var(--n) * 2.2rem); }
+  /* Five plates on one floor, each starting a step higher than the last. The step is a top margin, not a height,
+     so the staircase holds however the text in each plate wraps. */
+  .rungs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+  .rungs li { display: grid; gap: 0.9rem; align-content: start; padding: clamp(1.1rem, 1.6vw, 1.6rem); margin-top: calc((4 - var(--n)) * 2.2rem); }
   .rungs li:first-child { border-color: rgb(var(--f) / 0.4); }
   .rung-n { font-family: var(--mono); font-size: var(--fs-0); color: var(--muted); }
   .rungs h3 { font-size: clamp(1.25rem, 1rem + 0.7vw, 1.6rem); }
   .rungs li p:last-child { font-size: 0.98rem; }
-  @media (max-width: 1199px) { .rungs { grid-template-columns: 1fr 1fr; align-items: stretch; } .rungs li { min-height: 0; } }
+  @media (max-width: 1199px) { .rungs { grid-template-columns: 1fr 1fr; } .rungs li { margin-top: 0; } .rungs li:last-child { grid-column: 1 / -1; } }
   @media (max-width: 599px) { .rungs { grid-template-columns: 1fr; } }
 
   /* FAQ */
