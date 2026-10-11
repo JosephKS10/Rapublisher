@@ -23,7 +23,7 @@ export default function Insights() {
         title="Insights and field notes | RaPublisher"
         description="Articles and field notes from Melbourne forward deployed engineers on operations software, integrations and practical AI."
       />
-      <PageHead title="Insights" lead="Articles from RaPublisher's engineers on how we work, what custom software costs and what double handling costs." crumbs={[{ to: '/insights', label: 'Insights' }]} />
+      <PageHead title="Insights" lead="Articles from RaPublisher's engineers on how we work and what double handling really costs a business." crumbs={[{ to: '/insights', label: 'Insights' }]} />
       <div className="wrap pad-b">
         {publishedInsights.length ? (
           <ul className="posts">
