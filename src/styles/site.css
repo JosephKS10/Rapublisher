@@ -813,7 +813,9 @@
 
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: view()) {
-      [data-reveal] { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+      /* Done within 6rem of entering, so a tall card that starts part-way up a phone screen is not left half faded.
+         The first range is for browsers that do not take a length here. */
+      [data-reveal] { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; animation-range: entry 0% entry min(55%, 6rem); }
     }
   }
   @media (prefers-reduced-motion: reduce) {

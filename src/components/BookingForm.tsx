@@ -105,7 +105,11 @@ export function BookingForm() {
   const blur = { onBlur: (e: { target: Control }) => errors[e.target.name] !== undefined && check(e.target) }
 
   return (
-    <form ref={formRef} name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={submit} className="stepper glass" aria-label="Enquiry: three steps (about you, your business, the visit)">
+    <form ref={formRef} name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={submit} className="stepper glass" aria-label="Enquiry" aria-describedby="form-help">
+      <p id="form-help" className="sr-only">
+        Three steps: about you, your business, and what to fix. Required: your name, business name, email, team size, industry, suburb,
+        what you'd like to fix, and your consent.
+      </p>
       <input type="hidden" name="form-name" value={FORM_NAME} />
       <p className="hp" aria-hidden="true">
         <label>Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>

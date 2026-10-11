@@ -106,7 +106,7 @@ const org = {
       legalName: 'RA PUBLISHER PTY LTD',
       identifier: { '@type': 'PropertyValue', propertyID: 'ACN', value: '643 002 279' },
       url: site.url,
-      logo: `${site.url}/favicon.svg`,
+      logo: `${site.url}/logo.png`,
       image: `${site.url}/og/home.jpg`,
       email: site.email,
       slogan: site.line,

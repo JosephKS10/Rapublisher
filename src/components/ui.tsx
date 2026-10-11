@@ -43,7 +43,8 @@ export const SITE_ID = `${site.url}/#website`
 export const personId = (name: string) => `${site.url}/about#${slug(name)}`
 
 // `og` names the social preview image in public/og (scripts/og.js makes one per page); pages without their own pass one.
-export function Seo({ title, description, og }: { title: string; description: string; og?: string }) {
+// `notFound`: the address is not a page, so it gets no canonical, no page node, and is kept out of the index.
+export function Seo({ title, description, og, notFound }: { title: string; description: string; og?: string; notFound?: boolean }) {
   const path = useLocation().pathname.replace(/\/$/, '')
   const url = site.url + path
   const image = `${site.url}/og/${og ?? (path.slice(1).replaceAll('/', '-') || 'home')}.jpg`
@@ -51,16 +52,16 @@ export function Seo({ title, description, og }: { title: string; description: st
     <>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={url} />
+      {notFound ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={url} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
+      {!notFound && <meta property="og:url" content={url} />}
       <meta property="og:image" content={image} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
       <meta name="twitter:card" content="summary_large_image" />
-      <JsonLd
+      {!notFound && <JsonLd
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
@@ -70,10 +71,11 @@ export function Seo({ title, description, og }: { title: string; description: st
           description,
           inLanguage: 'en-AU',
           isPartOf: { '@id': SITE_ID },
-          about: { '@id': ORG_ID },
+          // Case studies are work the engineers led before RaPublisher, so the business is not their subject (B8)
+          about: path.startsWith('/work/') ? undefined : { '@id': ORG_ID },
           primaryImageOfPage: image,
         }}
-      />
+      />}
     </>
   )
 }
@@ -157,7 +159,7 @@ export function Crumbs({ items }: { items: { to: string; label: string }[] }) {
         data={{
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
-          itemListElement: all.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: site.url + c.to })),
+          itemListElement: all.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: site.url + c.to.replace(/\/$/, '') })),
         }}
       />
     </nav>

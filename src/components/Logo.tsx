@@ -29,7 +29,7 @@ export function Brand({ withDescriptor }: { withDescriptor?: boolean }) {
   return (
     <Link to="/" className="brand" aria-label="RaPublisher home">
       <Mark className="brand-mark" />
-      <span className="brand-name">RaPublisher</span>
+      <span className="brand-name">RaPublisher</span>{' '}
       {withDescriptor && <span className="brand-desc">{site.descriptor.replace(/\.$/, '')}</span>}
     </Link>
   )
