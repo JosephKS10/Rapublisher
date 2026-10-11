@@ -304,7 +304,7 @@
   /* How it runs and what it costs: one plate, the terms set large */
   .terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
   .terms > div { display: grid; gap: 1rem; align-content: start; padding: clamp(1.5rem, 3vw, 2.5rem); }
-  .terms > div + div { border-left: 1px solid var(--border-soft); }
+  .terms > div + div { border-left: 1px solid var(--border-soft); align-content: center; }
   .terms h2 { font-family: var(--body); font-size: var(--fs-0); font-weight: 500; letter-spacing: 0; color: var(--muted); }
   .terms h2 + p { font-family: var(--display); font-stretch: var(--wd); font-size: var(--fs-3); line-height: 1.25; letter-spacing: -0.02em; color: var(--fg); }
   .terms .muted { font-size: var(--fs-0); }
